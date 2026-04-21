@@ -12,6 +12,7 @@ import GameCard from "./components/GameCard";
 import GiveawayCard from "./components/GiveawayCard";
 import RewardCard from "./components/RewardCard";
 import BetaCard from "./components/BetaCard";
+import Background from "./components/Background";
 
 import "./styles/fonts.css";
 import "./styles/theme.css";
@@ -26,10 +27,10 @@ function Home() {
   const { toggleFavorite, isFavorite } = useFavorites();
 
   useEffect(() => {
-    // FreeToGame (Juegos gratis)
+    // Juegos gratis
     fetchGames().then(setGames);
 
-    // GamerPower (Regalos)
+    // Giveaways
     fetchGiveaways().then(setGiveaways);
   }, []);
 
@@ -52,7 +53,12 @@ function Home() {
 
   return (
     <div>
+
+      {/* Fondo animado */}
+      <Background />
+
       <div className="container">
+
         <h1>🎮 Bienvenido! 🎮</h1>
 
         <h2>Juegos gratis:</h2>
@@ -61,7 +67,9 @@ function Home() {
             <GameCard
               key={game.id}
               item={game}
-              isFavorite={isFavorite(getId("game", game.id))}
+              isFavorite={isFavorite(
+                getId("game", game.id)
+              )}
               onToggleFavorite={toggleFavorite}
             />
           ))}
@@ -108,6 +116,7 @@ function Home() {
             />
           ))}
         </div>
+
       </div>
     </div>
   );
