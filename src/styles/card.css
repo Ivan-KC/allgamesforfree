@@ -1,0 +1,109 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	background: var(--card-bg);
+	border-radius: 12px;
+	overflow: hidden;
+	transition: all 0.25s ease;
+}
+
+/* Cuando el mouse esta arriba */
+.card:hover {
+	box-shadow: var(--shadow);
+}
+
+.card-link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	text-decoration: none;
+	color: inherit;
+	position: relative;
+}
+
+/* Parte superior del articulo */
+.card-media {
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid var(--border);
+}
+
+/* Imagen del articulo */
+.card-media img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+}
+
+/* Botón favorito */
+.favorite-btn {
+	font: menu;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: var(--text);
+	background: var(--card-bg);
+	border: 1px solid var(--border);
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	z-index: 2;
+	transition: all 0.2s ease;
+}
+
+/* Cuando el mouse esta arriba */
+.favorite-btn:hover {
+	transform: scale(1.1);
+}
+
+/* Parte inferior del articulo */
+.card-content {
+	display: flex;
+	flex-direction: column;
+	padding: 12px;
+	gap: 6px;
+}
+
+/* Título del articulo */
+.card-content h3 {
+	margin: 0;
+	font-size: 16px;
+}
+
+/* Descripción del articulo */
+.card-content p {
+	font-size: 14px;
+	opacity: 0.8;
+}
+
+/* Tags del articulo */
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin-top: auto;
+}
+
+/* Tag individual del articulo */
+.tag {
+	background: var(--accent-bg);
+	color: var(--accent);
+	padding: 2px 6px;
+	border-radius: 6px;
+	font-size: 12px;
+}
+
+/* Precio original del articulo */
+.badge {
+	margin-top: 6px;
+	font-weight: bold;
+	color: white;
+	background: rgb(65 180 85);
+	border-radius: 8px;
+	padding: 4px 6px;
+	width: fit-content;
+	text-decoration: line-through;
+}

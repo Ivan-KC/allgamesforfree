@@ -1,0 +1,77 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px;
+    line-height: 1.45;
+    letter-spacing: 0.18px;
+
+    background: var(--bg);
+    color: var(--text);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive base */
+@media (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Headings */
+h1,
+h2 {
+    font-family: 'Montserrat', system-ui, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 500;
+    color: var(--text-h);
+}
+
+h1 {
+    font-size: 56px;
+    margin: 32px 0;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Responsive Headings */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 36px;
+        margin: 20px 0;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* Texto */
+p {
+    margin: 0;
+}
+
+/* Código */
+code {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 15px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--code-bg);
+    color: var(--text-h);
+}
