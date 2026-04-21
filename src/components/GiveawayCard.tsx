@@ -1,26 +1,37 @@
 import type { Giveaway } from "../types/Giveaway";
+import type { FavoriteProps } from "../types/FavoriteProps";
 
-export default function GiveawayCard({ giveaway }: { giveaway: Giveaway }) {
+type Props = FavoriteProps<Giveaway>;
+
+export default function GiveawayCard({ item, isFavorite, onToggleFavorite }: Props) {
   return (
     <article className="card">
-      <a href={giveaway.open_giveaway_url} target="_blank" className="card-link">
+      <a href={item.open_giveaway_url} target="_blank" className="card-link">
 
         <div className="card-media">
-          <img src={giveaway.thumbnail} alt={giveaway.title} />
-          <button className="favorite-btn">♥</button>
+          <img src={item.thumbnail} alt={item.title} />
         </div>
 
         <div className="card-content">
-          <h3>{giveaway.title}</h3>
-          <p>{giveaway.description}</p>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
 
           <div className="tags">
-            <span className="tag">{giveaway.platforms}</span>
+            <span className="tag">{item.platforms}</span>
           </div>
 
-          <span className="badge">{giveaway.worth}</span>
+          <span className="badge">{item.worth}</span>
         </div>
       </a>
+      <button
+        className="favorite-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          onToggleFavorite(`giveaway-${item.id}`)
+        }}
+      >
+        {isFavorite ? "❤️" : "🤍"}
+      </button>
     </article>
   );
 }
