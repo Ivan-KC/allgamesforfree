@@ -1,7 +1,8 @@
 export default function Header({ darkMode, setDarkMode }: any) {
   return (
     <header className="header">
-      <div className="logo">🎮 Todos los Juegos Gratis</div>
+      <div className="logo">🎮 <p>Todos los Juegos Gratis</p>
+      </div>
 
       <nav>
         <a href="#">Inicio</a>

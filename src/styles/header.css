@@ -8,12 +8,22 @@
     padding: 1rem 2rem;
     background: var(--card-bg);
     border-bottom: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
+    display: flex;
+}
+
+.logo p {
+    margin-left: 1rem;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -29,4 +39,20 @@ button {
     color: white;
     border-radius: 8px;
     cursor: pointer;
+}
+
+@media (max-width: 920px) {
+    .logo p {
+        width: 10rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding: 1rem;
+    }
+
+    .logo p {
+        display: none;
+    }
 }
