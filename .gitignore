@@ -7,16 +7,35 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+
+# Env
+.env
+.env.local
+.env.*.local
 *.local
 
-# Editor directories and files
+# Vite
+vite.config.ts.timestamp-*
+
+# Cache
+.cache/
+
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# System
 .DS_Store
+Thumbs.db
+
+# Misc
 *.suo
 *.ntvs*
 *.njsproj
