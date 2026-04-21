@@ -6,11 +6,15 @@ export default function Layout() {
   const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div>
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+    <div className={darkMode ? "dark" : "light"}>
+      
+      <Header 
+        darkMode={darkMode} 
+        setDarkMode={setDarkMode} 
+      />
 
-      {/* Aquí se renderizan las páginas */}
       <Outlet />
+
     </div>
   );
 }
