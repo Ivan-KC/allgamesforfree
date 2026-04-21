@@ -73,11 +73,13 @@ npm run preview # previsualizar build
 
 ### FreeToGame
 
-* https://www.freetogame.com/api/games
+* Sitio: https://www.freetogame.com
+* API: https://www.freetogame.com/api/games
 
 ### GamerPower
 
-* https://www.gamerpower.com/api/giveaways
+* Sitio: https://www.gamerpower.com
+* API: https://www.gamerpower.com/api/giveaways
 
 ⚠️ Nota: Se utiliza proxy en Vite para evitar problemas de CORS.
 
