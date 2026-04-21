@@ -1,75 +1,94 @@
-# React + TypeScript + Vite
+# 🎮 All Games For Free
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Es una aplicación frontend desarrollada con React + TypeScript + Vite que muestra juegos gratuitos y promociones activas obtenidas de APIs públicas.
 
-Currently, two official plugins are available:
+El objetivo del proyecto es centralizar:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* 🆓 Juegos free-to-play
+* 🎁 Giveaways activos
+* 🎮 DLCs / recompensas
+* 🧪 Betas abiertas
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## 🚀 Tecnologías utilizadas
 
-Note: This will impact Vite dev & build performances.
+* React
+* TypeScript
+* Vite
+* CSS modular (custom)
+* APIs públicas:
 
-## Expanding the ESLint configuration
+  * FreeToGame API
+  * GamerPower API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Instalación y ejecución
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clonar el repositorio
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <URL_DEL_REPO>
+cd allgamesforfree
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Instalar dependencias
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+---
+
+### 3. Ejecutar en desarrollo
+
+```bash
+npm run dev
+```
+
+---
+
+### 4. Abrir en el navegador
+
+```
+http://localhost:5173/
+```
+
+---
+
+## 🛠 Scripts disponibles
+
+```bash
+npm run dev     # servidor de desarrollo
+npm run build   # build de producción
+npm run preview # previsualizar build
+```
+
+---
+
+## 🌐 APIs utilizadas
+
+### FreeToGame
+
+* https://www.freetogame.com/api/games
+
+### GamerPower
+
+* https://www.gamerpower.com/api/giveaways
+
+⚠️ Nota: Se utiliza proxy en Vite para evitar problemas de CORS.
+
+---
+
+## 📌 Notas
+
+Proyecto desarrollado como práctica de React + consumo de APIs + diseño mobile UI.
+
+---
+
+## 📄 Licencia
+
+Libre para uso educativo y personal. Usalo como quieras.
