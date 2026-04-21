@@ -10,6 +10,7 @@ import GiveawayCard from "./components/GiveawayCard";
 import RewardCard from "./components/RewardCard";
 import BetaCard from "./components/BetaCard";
 import Header from "./components/Header";
+import Background from "./components/Background";
 
 import "./styles/fonts.css"
 import "./styles/theme.css";
@@ -51,6 +52,7 @@ function App() {
 
 	return (
 		<div>
+			<Background />
 			<Header darkMode={darkMode} setDarkMode={setDarkMode} />
 			<div className="container">
 				<h1>🎮 Bienvenido! 🎮</h1>

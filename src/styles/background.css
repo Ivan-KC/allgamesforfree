@@ -1,0 +1,60 @@
+/* Contenedor de props */
+.floating-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Vidrio */
+.floating-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+
+    pointer-events: none;
+}
+
+/* Vidrio modo oscuro */
+.dark .floating-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Props */
+.float-item {
+    width: 5rem;
+    position: absolute;
+    filter: blur(2px);
+
+    animation:
+        floatMove infinite ease-in-out,
+        spin linear infinite;
+}
+
+/* Animación de movimiento */
+@keyframes floatMove {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(5rem, -10rem);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Animación de giro */
+@keyframes spin {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
