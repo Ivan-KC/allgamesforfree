@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import type { Game } from "./types/Game";
-import type { Giveaway } from "./types/Giveaway";
-import { fetchGames } from "./services/fetchGames";
-import { fetchGiveaways } from "./services/fetchGiveaways";
+import type { Game } from "../types/Game";
+import type { Giveaway } from "../types/Giveaway";
+import { fetchGames } from "../services/fetchGames";
+import { fetchGiveaways } from "../services/fetchGiveaways";
 
-import { useFavorites } from "./hooks/useFavorites";
+import { useFavorites } from "../hooks/useFavorites";
 
-import GameCard from "./components/GameCard";
-import GiveawayCard from "./components/GiveawayCard";
-import RewardCard from "./components/RewardCard";
-import BetaCard from "./components/BetaCard";
-import Background from "./components/Background";
+import GameCard from "../components/GameCard";
+import GiveawayCard from "../components/GiveawayCard";
+import RewardCard from "../components/RewardCard";
+import BetaCard from "../components/BetaCard";
+import Background from "../components/Background";
 
-import "./styles/fonts.css";
-import "./styles/theme.css";
-import "./styles/header.css";
-import "./styles/grid.css";
-import "./styles/section.css";
-import "./styles/card.css";
+import "../styles/fonts.css";
+import "../styles/theme.css";
+import "../styles/header.css";
+import "../styles/grid.css";
+import "../styles/section.css";
+import "../styles/card.css";
 
 function Home() {
   const [games, setGames] = useState<Game[]>([]);
@@ -126,7 +126,7 @@ function Home() {
         <section>
           <div className="section-header">
             <h2>Betas abiertas</h2>
-            <Link to="/rewards" className="see-more">
+            <Link to="/betas" className="see-more">
               Ver más <span>→</span>
             </Link>
           </div>

@@ -8,7 +8,7 @@ section {
     margin-bottom: 10px;
 }
 
-.section-header h1 {
+.section-header h2 {
     margin: 0;
     margin-right: 1rem;
 }
@@ -19,8 +19,6 @@ section {
     color: #333;
     font-weight: bold;
     transition: 0.2s;
-    margin-top: 1rem;
-    margin-left: 1rem;
 }
 
     .see-more:hover {
