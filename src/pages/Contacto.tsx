@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 function Contacto() {
 
-  const position: [number, number] = [-34.7692, -58.2453];
+  const position: [number, number] = [-34.9215, -57.9536];
 
   return (
     <div className="contact-container">
