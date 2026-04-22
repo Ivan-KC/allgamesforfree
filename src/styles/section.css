@@ -1,11 +1,15 @@
 section {
-    scroll-margin-top: 117px;
+    border-bottom: 1px solid #cacaca;
+}
+
+section:last-child {
+    border-bottom: none;
 }
 
 .section-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-top: 2rem;
 }
 
 .section-header h2 {
@@ -16,13 +20,13 @@ section {
 .see-more {
     font-size: 1rem;
     text-decoration: none;
-    color: #333;
+    color: var(--text);
     font-weight: bold;
     transition: 0.2s;
 }
 
     .see-more:hover {
-        color: #000;
+        color: var(--text-h);
         transform: translateX(3px);
     }
 
