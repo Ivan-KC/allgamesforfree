@@ -9,10 +9,10 @@ export default function Header({ darkMode, setDarkMode }: any) {
 
       <nav>
         <Link to="/">Inicio</Link>
-        <Link to="/">Juegos</Link>
-        <Link to="/">Giveaways</Link>
-        <Link to="/">Recompensas</Link>
-        <Link to="/">Betas</Link>
+        <Link to="/games">Juegos</Link>
+        <Link to="/giveaways">Giveaways</Link>
+        <Link to="/Rewards">Recompensas</Link>
+        <Link to="/betas">Betas</Link>
         <Link to="/favorites">Favoritos</Link>
         <Link to="/contacto">Contacto</Link>
       </nav>
