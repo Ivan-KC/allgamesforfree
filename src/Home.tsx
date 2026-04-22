@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import type { Game } from "./types/Game";
 import type { Giveaway } from "./types/Giveaway";
-
-import { useFavorites } from "./hooks/useFavorites";
-
 import { fetchGames } from "./services/fetchGames";
 import { fetchGiveaways } from "./services/fetchGiveaways";
+
+import { useFavorites } from "./hooks/useFavorites";
 
 import GameCard from "./components/GameCard";
 import GiveawayCard from "./components/GiveawayCard";
@@ -18,6 +18,7 @@ import "./styles/fonts.css";
 import "./styles/theme.css";
 import "./styles/header.css";
 import "./styles/grid.css";
+import "./styles/section.css";
 import "./styles/card.css";
 
 function Home() {
@@ -58,63 +59,90 @@ function Home() {
       <div className="container">
 
         <h1>🎮 Bienvenido! 🎮</h1>
+        <section>
+          <div className="section-header">
+            <h2>Juegos gratis</h2>
+            <Link to="/games" className="see-more">
+              Ver más <span>→</span>
+            </Link>
+          </div>
 
-        <h2>Juegos gratis:</h2>
-        <div className="grid">
-          {gamesList.map(game => (
-            <GameCard
-              key={game.id}
-              item={game}
-              isFavorite={isFavorite(
-                getId("game", game.id)
-              )}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
+          <div className="grid">
+            {gamesList.map(game => (
+              <GameCard
+                key={game.id}
+                item={game}
+                isFavorite={isFavorite(
+                  getId("game", game.id)
+                )}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+        </section>
 
-        <h2>🆓 Juegos regalandose:</h2>
-        <div className="grid">
-          {giveawaysGames.map(giveaway => (
-            <GiveawayCard
-              key={giveaway.id}
-              item={giveaway}
-              isFavorite={isFavorite(
-                getId("giveaway", giveaway.id)
-              )}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
+        <section>
+          <div className="section-header">
+            <h2>Juegos regalandose</h2>
+            <Link to="/giveaways" className="see-more">
+              Ver más <span>→</span>
+            </Link>
+          </div>
+          <div className="grid">
+            {giveawaysGames.map(giveaway => (
+              <GiveawayCard
+                key={giveaway.id}
+                item={giveaway}
+                isFavorite={isFavorite(
+                  getId("giveaway", giveaway.id)
+                )}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+        </section>
 
-        <h2>🎁 Recompensas gratis en juegos:</h2>
-        <div className="grid">
-          {rewards.map(giveaway => (
-            <RewardCard
-              key={giveaway.id}
-              item={giveaway}
-              isFavorite={isFavorite(
-                getId("giveaway", giveaway.id)
-              )}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
+        <section>
+          <div className="section-header">
+            <h2>Recompensas gratis en juegos</h2>
+            <Link to="/rewards" className="see-more">
+              Ver más <span>→</span>
+            </Link>
+          </div>
+          <div className="grid">
+            {rewards.map(giveaway => (
+              <RewardCard
+                key={giveaway.id}
+                item={giveaway}
+                isFavorite={isFavorite(
+                  getId("giveaway", giveaway.id)
+                )}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+        </section>
 
-        <h2>🧪 Betas gratis:</h2>
-        <div className="grid">
-          {betas.map(giveaway => (
-            <BetaCard
-              key={giveaway.id}
-              item={giveaway}
-              isFavorite={isFavorite(
-                getId("giveaway", giveaway.id)
-              )}
-              onToggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
-
+        <section>
+          <div className="section-header">
+            <h2>Betas abiertas</h2>
+            <Link to="/rewards" className="see-more">
+              Ver más <span>→</span>
+            </Link>
+          </div>
+          <div className="grid">
+            {betas.map(giveaway => (
+              <BetaCard
+                key={giveaway.id}
+                item={giveaway}
+                isFavorite={isFavorite(
+                  getId("giveaway", giveaway.id)
+                )}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
