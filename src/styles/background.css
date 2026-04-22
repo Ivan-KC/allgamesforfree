@@ -19,7 +19,7 @@
 
 /* Vidrio modo oscuro */
 .dark .floating-overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(10 10 10 / 75%);
 }
 
 /* Props */

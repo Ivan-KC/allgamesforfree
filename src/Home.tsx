@@ -53,8 +53,6 @@ function Home() {
 
   return (
     <div>
-
-      {/* Fondo animado */}
       <Background />
 
       <div className="container">

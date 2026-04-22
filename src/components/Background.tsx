@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import "../styles/background.css";
 
 const images = [
@@ -23,31 +24,35 @@ export default function Background() {
     const rows = 4;
     const cols = 4;
 
-    const items = [];
+    const items = useMemo(() => {
+        const generated = [];
 
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const i = row * cols + col;
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                const i = row * cols + col;
 
-            const baseTop = (row / rows) * 100;
-            const baseLeft = (col / cols) * 100;
+                const baseTop = (row / rows) * 100;
+                const baseLeft = (col / cols) * 100;
 
-            // Posiciones con ruido
-            const offsetTop = (Math.random() - 0.5) * 10;
-            const offsetLeft = (Math.random() - 0.5) * 10;
+                // Posiciones con ruido                
+                const offsetTop = (Math.random() - 0.5) * 10;
+                const offsetLeft = (Math.random() - 0.5) * 10;
 
-            items.push({
-                id: i,
-                image: images[i % images.length],
-                style: {
-                    top: `${baseTop + offsetTop}%`,
-                    left: `${baseLeft + offsetLeft}%`,
-                    animationDuration: `${25 + Math.random() * 10}s`,
-                    width: `${5 + Math.random() * 10}rem`
-                }
-            });
+                generated.push({
+                    id: i,
+                    image: images[i % images.length],
+                    style: {
+                        top: `${baseTop + offsetTop}%`,
+                        left: `${baseLeft + offsetLeft}%`,
+                        animationDuration: `${25 + Math.random() * 10}s`,
+                        width: `${5 + Math.random() * 10}rem`
+                    }
+                });
+            }
         }
-    }
+
+        return generated;
+    }, []);
 
     return (
         <>
