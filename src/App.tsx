@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import Favorites from "./pages/Fav";
 import Contacto from "./pages/Contacto";
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
         <Route path="/" element={<Layout />}>
 
           <Route index element={<Home />} />
+
+          <Route path="favorites" element={<Favorites />} />
 
           <Route path="contacto" element={<Contacto />} />
 

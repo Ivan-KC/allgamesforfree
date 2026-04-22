@@ -13,6 +13,7 @@ export default function Header({ darkMode, setDarkMode }: any) {
         <Link to="/">Giveaways</Link>
         <Link to="/">Recompensas</Link>
         <Link to="/">Betas</Link>
+        <Link to="/favorites">Favoritos</Link>
         <Link to="/contacto">Contacto</Link>
       </nav>
 
