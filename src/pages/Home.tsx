@@ -6,7 +6,7 @@ import type { Giveaway } from "../types/Giveaway";
 import { fetchGames } from "../services/fetchGames";
 import { fetchGiveaways } from "../services/fetchGiveaways";
 
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../utils/useFavorites";
 
 import GameCard from "../components/GameCard";
 import GiveawayCard from "../components/GiveawayCard";

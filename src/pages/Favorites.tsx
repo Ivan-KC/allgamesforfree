@@ -6,12 +6,10 @@ import type { Giveaway } from "../types/Giveaway";
 import { fetchGames } from "../services/fetchGames";
 import { fetchGiveaways } from "../services/fetchGiveaways";
 
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../utils/useFavorites";
 
 import GameCard from "../components/GameCard";
 import GiveawayCard from "../components/GiveawayCard";
-import RewardCard from "../components/RewardCard";
-import BetaCard from "../components/BetaCard";
 
 import "../styles/pages/favorites.css";
 
@@ -20,134 +18,57 @@ function Favorites() {
   const [games, setGames] = useState<Game[]>([]);
   const [giveaways, setGiveaways] = useState<Giveaway[]>([]);
 
-  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { collections, isFavorite, removeFavorite } = useFavorites();
 
   useEffect(() => {
     fetchGames().then(setGames);
     fetchGiveaways().then(setGiveaways);
   }, []);
 
-  const getId = (type: string, id: number) =>
-    `${type}-${id}`;
-
-  const favoriteGames = games.filter(game =>
-    favorites.includes(getId("game", game.id))
-  );
-
-  const favoriteGiveaways = giveaways.filter(g =>
-    favorites.includes(getId("giveaway", g.id)) &&
-    g.type === "Game"
-  );
-
-  const favoriteRewards = giveaways.filter(g =>
-    favorites.includes(getId("giveaway", g.id)) &&
-    g.type === "DLC"
-  );
-
-  const favoriteBetas = giveaways.filter(g =>
-    favorites.includes(getId("giveaway", g.id)) &&
-    g.type === "Early Access"
-  );
-
   return (
-    <div>
-      <div className="container">
+    <div className="container">
+      <h1>⭐ Tus Favoritos</h1>
 
-        <h1>⭐ Tus Favoritos</h1>
+      {Object.entries(collections).map(([name, ids]) => {
 
-        {/* Juegos */}
-        <section>
-          <h2>Juegos</h2>
+        const gamesInCollection = games.filter(g =>
+          ids.includes(`game-${g.id}`)
+        );
 
-          {favoriteGames.length === 0 ? (
-            <p className="empty-message">
-              🎮 No tenés juegos favoritos aún<br />
-              <span>Agregá juegos tocando el ❤️</span>
-            </p>
-          ) : (
+        const giveawaysInCollection = giveaways.filter(g =>
+          ids.includes(`giveaway-${g.id}`)
+        );
+
+        if (gamesInCollection.length === 0 && giveawaysInCollection.length === 0) {
+          return null;
+        }
+
+        return (
+          <section key={name}>
+            <h2>📁 {name}</h2>
+
             <div className="grid">
-              {favoriteGames.map(game => (
+              {gamesInCollection.map(game => (
                 <GameCard
                   key={game.id}
                   item={game}
-                  isFavorite={isFavorite(getId("game", game.id))}
-                  onToggleFavorite={toggleFavorite}
+                  isFavorite={isFavorite(`game-${game.id}`)}
+                  onToggleFavorite={removeFavorite}
                 />
               ))}
-            </div>
-          )}
-        </section>
 
-        {/* Giveaways */}
-        <section>
-          <h2>Giveaways</h2>
-
-          {favoriteGiveaways.length === 0 ? (
-            <p className="empty-message">
-              🎁 No tenés giveaways favoritos aún<br />
-              <span>Explorá regalos y tocá el ❤️</span>
-            </p>
-          ) : (
-            <div className="grid">
-              {favoriteGiveaways.map(giveaway => (
+              {giveawaysInCollection.map(g => (
                 <GiveawayCard
-                  key={giveaway.id}
-                  item={giveaway}
-                  isFavorite={isFavorite(getId("giveaway", giveaway.id))}
-                  onToggleFavorite={toggleFavorite}
+                  key={g.id}
+                  item={g}
+                  isFavorite={isFavorite(`giveaway-${g.id}`)}
+                  onToggleFavorite={removeFavorite}
                 />
               ))}
             </div>
-          )}
-        </section>
-
-        {/* Recompensas */}
-        <section>
-          <h2>Recompensas</h2>
-
-          {favoriteRewards.length === 0 ? (
-            <p className="empty-message">
-              🎁 No tenés recompensas favoritas aún<br />
-              <span>Explorá DLCs gratis y tocá el ❤️</span>
-            </p>
-          ) : (
-            <div className="grid">
-              {favoriteRewards.map(giveaway => (
-                <RewardCard
-                  key={giveaway.id}
-                  item={giveaway}
-                  isFavorite={isFavorite(getId("giveaway", giveaway.id))}
-                  onToggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
-          )}
-        </section>
-
-        {/* Betas */}
-        <section>
-          <h2>Betas</h2>
-
-          {favoriteBetas.length === 0 ? (
-            <p className="empty-message">
-              🧪 No tenés betas favoritas aún<br />
-              <span>Explorá accesos anticipados y tocá el ❤️</span>
-            </p>
-          ) : (
-            <div className="grid">
-              {favoriteBetas.map(giveaway => (
-                <BetaCard
-                  key={giveaway.id}
-                  item={giveaway}
-                  isFavorite={isFavorite(getId("giveaway", giveaway.id))}
-                  onToggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
-          )}
-        </section>
-
-      </div>
+          </section>
+        );
+      })}
     </div>
   );
 }

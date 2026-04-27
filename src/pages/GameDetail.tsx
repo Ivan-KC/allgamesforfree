@@ -6,7 +6,7 @@ import type { Game } from "../types/Game";
 import type { GameDetail } from "../types/GameDetail";
 import { fetchGameById } from "../services/fetchGameById";
 import { fetchGames } from "../services/fetchGames";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../utils/useFavorites";
 import { addToHistory } from "../utils/history";
 
 import GameCard from "../components/GameCard";

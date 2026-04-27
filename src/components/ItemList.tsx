@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../utils/useFavorites";
 
 import "../styles/components/search.css";
 
@@ -49,7 +49,7 @@ function ItemList<T>({
     c => c.group === "tag"
   );
 
-  const { toggleFavorite, isFavorite } = useFavorites();
+  const { isFavorite, removeFavorite } = useFavorites();
 
   const filter = searchParams.get("filter") || "all";
   const sort = searchParams.get("sort") || sortOptions[0].value;
@@ -180,14 +180,11 @@ function ItemList<T>({
             <CardComponent
               key={item.id}
               item={item}
-              isFavorite={isFavorite(
-                `${favoritePrefix}-${item.id}`
-              )}
-              onToggleFavorite={toggleFavorite}
+              isFavorite={isFavorite(`${favoritePrefix}-${item.id}`)}
+              onToggleFavorite={removeFavorite}
             />
           ))}
         </div>
-
       </div>
     </div>
   );

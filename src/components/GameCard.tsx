@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+
 import type { Game } from "../types/Game";
 import type { FavoriteProps } from "../types/FavoriteProps";
+
 import ImageWithLoader from "./ImageWithLoader";
 
 type Props = FavoriteProps<Game>;
@@ -9,6 +12,9 @@ type Props = FavoriteProps<Game>;
 export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
+
+  const ctx = useOutletContext<any>();
+  const openFavoritesModal = ctx?.openFavoritesModal;
 
   useEffect(() => {
     const el = textRef.current;
@@ -47,11 +53,18 @@ export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) 
         className="favorite-btn"
         onClick={(e) => {
           e.preventDefault();
-          onToggleFavorite(`game-${item.id}`)
+
+          const id = `game-${item.id}`;
+
+          if (isFavorite) {
+            onToggleFavorite(id); // Eliminar de favoritos
+          } else {
+            openFavoritesModal(id); // Abrir modal de favoritos
+          }
         }}
       >
         {isFavorite ? "❤️" : "🤍"}
       </button>
-    </article>
+    </article >
   );
 }

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+
 import type { Giveaway } from "../types/Giveaway";
 import type { FavoriteProps } from "../types/FavoriteProps";
+
 import ImageWithLoader from "./ImageWithLoader";
 
 type Props = FavoriteProps<Giveaway>;
@@ -9,6 +12,9 @@ type Props = FavoriteProps<Giveaway>;
 export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
+
+  const ctx = useOutletContext<any>();
+  const openFavoritesModal = ctx?.openFavoritesModal;
 
   useEffect(() => {
     const el = textRef.current;
@@ -47,7 +53,13 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
         className="favorite-btn"
         onClick={(e) => {
           e.preventDefault();
-          onToggleFavorite(`giveaway-${item.id}`)
+          const id = `giveaway-${item.id}`;
+
+          if (isFavorite) {
+            onToggleFavorite(id); // Eliminar de favoritos
+          } else {
+            openFavoritesModal(id); // Abrir modal de favoritos
+          }
         }}
       >
         {isFavorite ? "❤️" : "🤍"}

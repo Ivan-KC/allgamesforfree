@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import type { Giveaway } from "../types/Giveaway";
 import { fetchGiveawayById } from "../services/fetchGiveawayById";
 import { fetchGiveaways } from "../services/fetchGiveaways";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavorites } from "../utils/useFavorites";
 import { addToHistory } from "../utils/history";
 
 import GiveawayCard from "../components/GiveawayCard";

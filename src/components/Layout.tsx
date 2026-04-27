@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useFavorites } from "../utils/useFavorites";
+
 import Header from "./Header";
 import Background from "./Background";
+
+import "../styles/components/favorite-modal.css";
 
 export default function Layout() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -36,6 +40,19 @@ export default function Layout() {
     }
   }, [darkMode]);
 
+  const { collections, addToCollection } = useFavorites();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCollection, setSelectedCollection] = useState("");
+  const [newCollection, setNewCollection] = useState("");
+
+  const openFavoritesModal = (id: string) => {
+    setSelectedId(id);
+    setSelectedCollection("Favoritos");
+    setNewCollection("");
+    setShowModal(true);
+  };
+
   return (
     <>
       <Header
@@ -43,7 +60,61 @@ export default function Layout() {
         setDarkMode={setDarkMode}
       />
       <Background />
-      <Outlet />
+
+      <Outlet context={{ openFavoritesModal }} />
+
+      {showModal && selectedId && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Guardar en una colección</h3>
+
+            <label>Elegir colección</label>
+            <select
+              value={selectedCollection}
+              onChange={(e) => setSelectedCollection(e.target.value)}
+              disabled={newCollection.trim().length > 0}
+            >
+              {Object.keys(collections).map(name => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+
+            <label>Nueva colección</label>
+            <input
+              type="text"
+              placeholder="Ej: RPG favoritos"
+              value={newCollection}
+              onChange={(e) => setNewCollection(e.target.value)}
+            />
+
+            <div className="modal-actions">
+              <button
+                onClick={() => {
+                  const collectionName =
+                    newCollection.trim() || selectedCollection;
+
+                  if (!collectionName) return;
+
+                  addToCollection(selectedId, collectionName);
+
+                  setNewCollection("");
+                  setSelectedCollection("");
+                  setShowModal(false);
+                }}
+              >
+                Guardar
+              </button>
+
+              <button onClick={() => setShowModal(false)}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </>
   );
 }

@@ -172,6 +172,7 @@ nav a:hover {
     padding: 10px;
     cursor: pointer;
     box-shadow: none;
+    font-weight: normal;
     text-align: left;
     text-decoration: none;
     outline: none;
