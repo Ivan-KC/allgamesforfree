@@ -12,14 +12,9 @@ import GameCard from "../components/GameCard";
 import GiveawayCard from "../components/GiveawayCard";
 import RewardCard from "../components/RewardCard";
 import BetaCard from "../components/BetaCard";
-import Background from "../components/Background";
 
-import "../styles/fonts.css";
-import "../styles/theme.css";
-import "../styles/header.css";
-import "../styles/grid.css";
-import "../styles/card.css";
-import "../styles/favorites.css";
+import "../styles/pages/favorites.css";
+
 
 function Favorites() {
   const [games, setGames] = useState<Game[]>([]);
@@ -35,7 +30,6 @@ function Favorites() {
   const getId = (type: string, id: number) =>
     `${type}-${id}`;
 
-  // 🔥 FILTROS CORRECTOS
   const favoriteGames = games.filter(game =>
     favorites.includes(getId("game", game.id))
   );
@@ -57,12 +51,11 @@ function Favorites() {
 
   return (
     <div>
-      <Background />
-
       <div className="container">
+
         <h1>⭐ Tus Favoritos</h1>
 
-        {/* 🎮 GAMES */}
+        {/* Juegos */}
         <section>
           <h2>Juegos</h2>
 
@@ -85,7 +78,7 @@ function Favorites() {
           )}
         </section>
 
-        {/* 🎁 GIVEAWAYS */}
+        {/* Giveaways */}
         <section>
           <h2>Giveaways</h2>
 
@@ -108,7 +101,7 @@ function Favorites() {
           )}
         </section>
 
-        {/* 🎁 REWARDS */}
+        {/* Recompensas */}
         <section>
           <h2>Recompensas</h2>
 
@@ -131,7 +124,7 @@ function Favorites() {
           )}
         </section>
 
-        {/* 🧪 BETAS */}
+        {/* Betas */}
         <section>
           <h2>Betas</h2>
 

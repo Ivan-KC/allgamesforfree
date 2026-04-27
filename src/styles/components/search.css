@@ -1,0 +1,95 @@
+
+.games-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Input del buscador */
+#search-input {
+  height: 38px;
+  max-width: 225px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  text-align: start;
+  outline: none;
+  transition: 0.2s;
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-border);
+}
+
+/* Contenedor de Filtros */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Botones de los filtros */
+.filter-btn {
+  height: 38px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #222;
+  color: white;
+  border: none;
+  transition: 0.2s;
+}
+
+  .filter-btn:hover {
+    background: var(--accent-h);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+  }
+
+   .filter-btn.active:hover {
+    background: var(--header-h);
+  }
+
+#filter-select {
+  height: 38px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  outline-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Selección de orden */
+#sort-select {
+  height: 38px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 18px;
+  outline-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    #search-input, #filter-select, #sort-select {
+        font-size: 16px;
+    }
+}

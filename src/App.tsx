@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Favorites from "./pages/Fav";
-import Contacto from "./pages/Contacto";
+import Favorites from "./pages/Favorites";
+import Contact from "./pages/Contact";
 import Games from "./pages/Games";
-import Betas from "./pages/Betas";
-import Rewards from "./pages/Rewards";
 import Giveaways from "./pages/Giveaways";
+import GameDetail from "./pages/GameDetail";
+import GiveawayDetail from "./pages/GiveawayDetail";
 
 function App() {
   return (
@@ -20,15 +20,15 @@ function App() {
 
           <Route path="favorites" element={<Favorites />} />
 
-          <Route path="contacto" element={<Contacto />} />
+          <Route path="contacto" element={<Contact />} />
 
           <Route path="games" element={<Games />} />
 
-          <Route path="betas" element={<Betas />} />
-
-          <Route path="rewards" element={<Rewards />} />
-
           <Route path="giveaways" element={<Giveaways />} />
+
+          <Route path="/game/:id" element={<GameDetail />} />
+
+          <Route path="/giveaway/:id" element={<GiveawayDetail />} />
 
         </Route>
 

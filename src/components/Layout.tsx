@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./Header";
+import Background from "./Background";
 
 export default function Layout() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -41,6 +42,7 @@ export default function Layout() {
         darkMode={darkMode}
         setDarkMode={setDarkMode}
       />
+      <Background />
       <Outlet />
     </>
   );

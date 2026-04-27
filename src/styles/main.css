@@ -66,6 +66,26 @@ p {
     margin: 0;
 }
 
+/* Botones */
+button {
+    font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: var(--secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+    button:hover {
+        transform: translateY(-2px);
+        background: var(--secondary-h);
+    }
+
 /* Código */
 code {
     font-family: ui-monospace, Consolas, monospace;
@@ -74,4 +94,10 @@ code {
     border-radius: 4px;
     background: var(--code-bg);
     color: var(--text-h);
+}
+
+@media (max-width: 1024px) {
+    button {
+        font-size: 16px;
+    }
 }

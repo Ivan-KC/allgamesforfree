@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import "../styles/background.css";
+import "../styles/layout/background.css";
 
 const images = [
     "/src/assets/background/bg-prop-1.png",

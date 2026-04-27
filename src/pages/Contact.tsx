@@ -1,15 +1,13 @@
-import "../styles/contact.css";
-import Background from "../components/Background";
-
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-function Contacto() {
+import "../styles/pages/contact.css";
+
+function Contact() {
 
   const position: [number, number] = [-34.9215, -57.9536];
 
   return (
     <div className="contact-container">
-      <Background />
       <h1 className="contact-title">
         📞 Contacto
       </h1>
@@ -82,4 +80,4 @@ function Contacto() {
   );
 }
 
-export default Contacto;
+export default Contact;

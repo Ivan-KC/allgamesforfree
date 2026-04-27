@@ -1,11 +1,17 @@
 @font-face {
-  font-family: "Bahnschrift";
-  src: url("/fonts/BAHNSCHRIFT.TTF") format("truetype");
+    font-family: "Bahnschrift";
+    src: url("/fonts/BAHNSCHRIFT.TTF") format("truetype");
 }
 
 @font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sacramento";
+    src: url("/fonts/Sacramento-Regular.ttf") format("truetype");
+    font-style: normal;
 }

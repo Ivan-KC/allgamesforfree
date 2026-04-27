@@ -2,16 +2,26 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid #cacaca;
+	border: 1px solid var(--border);
 	background: var(--card-bg);
 	border-radius: 12px;
 	overflow: hidden;
-	transition: all 0.25s ease;
+	transition: none;
+}
+
+/* Solo animamos articulos visibles */
+.card.in-view {
+	transition:
+		background 0.25s ease,
+		color 0.25s ease,
+		border-color 0.25s ease,
+		box-shadow 0.25s ease;
 }
 
 /* Cuando el mouse esta arriba */
 .card:hover {
 	box-shadow: var(--shadow);
+	background: var(--header);
 }
 
 .card-link {
@@ -33,17 +43,15 @@
 }
 
 /* Imagen del articulo */
-.card-media img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+.card-media .image-wrapper img {
 	display: block;
-	transition: transform 0.3s ease;
+	transition: 0.3s ease;
+	cursor: pointer;
 }
 
-	.card:hover .card-media img {
+.card:hover .card-media img {
 	transform: scale(1.05);
-	}
+}
 
 /* Botón favorito */
 .favorite-btn {
@@ -61,6 +69,10 @@
 	font-size: 20px;
 	cursor: pointer;
 	z-index: 2;
+	transition: none;
+}
+
+.card.in-view .favorite-btn {
 	transition: all 0.2s ease;
 }
 
@@ -78,16 +90,66 @@
 	gap: 6px;
 }
 
+/* Texto del articulo */
+.card-text {
+	max-height: 10rem;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Difuminado cuando la descripción es larga */
+.card-text.fade::after,
+.card-text.fade::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2em;
+	pointer-events: none;
+
+	transition: opacity 0.25s ease;
+}
+
+.card-text.fade::after {
+	z-index: 1;
+	background: linear-gradient(to bottom,
+			rgba(0, 0, 0, 0),
+			var(--card-bg));
+
+	opacity: 1;
+}
+
+.card-text.fade::before {
+	z-index: 2;
+	background: linear-gradient(to bottom,
+			rgba(0, 0, 0, 0),
+			var(--header));
+
+	opacity: 0;
+}
+
+/* Cuando el mouse esta arriba */
+.card:hover .card-text.fade::before {
+	opacity: 1;
+}
+
+.card:hover .card-text.fade::after {
+	opacity: 0;
+}
+
 /* Título del articulo */
-.card-content h3 {
+.card-text h3 {
 	margin: 0;
+	margin-bottom: 6px;
 	font-size: 16px;
 }
 
 /* Descripción del articulo */
-.card-content p {
+.card-text p {
 	font-size: 14px;
 	opacity: 0.8;
+	overflow: hidden;
 }
 
 /* Tags del articulo */
@@ -108,13 +170,25 @@
 }
 
 /* Precio original del articulo */
-.badge {
+.price {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
 	margin-top: 6px;
+}
+
+.price p {
+	text-decoration: line-through;
+	margin: 0;
+}
+
+.price span {
+	margin-right: 6px;
 	font-weight: bold;
 	color: white;
 	background: rgb(65 180 85);
 	border-radius: 8px;
 	padding: 4px 6px;
 	width: fit-content;
-	text-decoration: line-through;
+	text-decoration: none;
 }

@@ -1,0 +1,349 @@
+.header {
+    height: 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--header);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.25s ease;
+}
+
+.header a {
+    height: stretch;
+    align-content: center;
+    text-decoration: none;
+}
+
+.logo {
+    color: var(--logo);
+    font-size: 32px;
+    font-family: "Sacramento";
+    font-weight: bold;
+    display: flex;
+    text-decoration: none;
+    margin-left: 2rem;
+}
+
+.light .logo:hover {
+    color: var(--accent-h);
+}
+
+.dark .logo {
+    color: var(--logo);
+    font-weight: normal;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #bc13fe,
+        0 0 82px #bc13fe,
+        0 0 92px #bc13fe,
+        0 0 102px #bc13fe,
+        0 0 151px #bc13fe;
+    animation: pulsate 0.5s ease-in-out infinite alternate;
+}
+
+.dark .logo:hover {
+    animation: flicker 1.5s infinite alternate;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 4rem;
+}
+
+nav a {
+    height: stretch;
+    padding: 0 1rem;
+    color: var(--text);
+    text-decoration: none;
+    align-content: center;
+    border-right: 1px solid var(--border);
+}
+
+nav a:last-child {
+    border-right: none;
+}
+
+nav a:hover {
+    color: var(--text-h);
+    background: var(--header-h);
+    animation: flicker 1.5s alternate;
+}
+
+.dark nav a:hover {
+    color: var(--logo);
+    text-shadow:
+            0 0 4px #fff,
+            0 0 11px #fff,
+            0 0 19px #fff,
+            0 0 40px #bc13fe,
+            0 0 80px #bc13fe,
+            0 0 90px #bc13fe,
+            0 0 100px #bc13fe,
+            0 0 150px #bc13fe;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-btn {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    font-size: 26px;
+    background: var(--accent);
+    border: 1px solid var(--border);
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.dark .menu-btn {
+    color: var(--logo);
+    background: none;
+    border: 1px solid #fff;
+    font-weight: normal;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #bc13fe,
+        0 0 82px #bc13fe,
+        0 0 92px #bc13fe,
+        0 0 102px #bc13fe,
+        0 0 151px #bc13fe;
+    box-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 20px #bc13fe,
+        inset 0 0 4px #fff,
+        inset 0 0 15px #bc13fe;
+
+    animation: pulsate 0.5s ease-in-out infinite alternate, pulsate-border 0.5s ease-in-out infinite alternate;
+}
+
+.menu-btn:hover {
+    background: var(--accent-h);
+    transform: none;
+}
+
+.dark .menu-btn:hover {
+    background: none;
+    animation: flicker 1.5s infinite alternate, flicker-border 1.5s infinite alternate;
+}
+
+.menu-btn.active {
+    transform: rotate(90deg);
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    height: 45px;
+    color: var(--text);
+    background: var(--card-bg);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: none;
+    text-align: left;
+    text-decoration: none;
+    outline: none;
+    transform: none;
+    transition: 0.2s;
+}
+
+.dropdown-menu:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:not(.disabled):hover {
+    color: var(--text-h);
+    background: var(--header-h);
+}
+
+.dropdown-menu .disabled {
+    color: var(--border);
+    cursor: not-allowed;
+}
+
+/* Secciones en el dropdown para moviles */
+.mobile-links {
+    display: none;
+}
+
+/* Efecto de neon del logo */
+@keyframes pulsate {
+    100% {
+        /* Mas brillo */
+        text-shadow:
+            0 0 4px #fff,
+            0 0 11px #fff,
+            0 0 19px #fff,
+            0 0 40px #bc13fe,
+            0 0 80px #bc13fe,
+            0 0 90px #bc13fe,
+            0 0 100px #bc13fe,
+            0 0 150px #bc13fe;
+    }
+
+    0% {
+        /* Menos brillo */
+        text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #fff,
+            0 0 10px #bc13fe,
+            0 0 45px #bc13fe,
+            0 0 55px #bc13fe,
+            0 0 70px #bc13fe,
+            0 0 80px #bc13fe,
+    }
+}
+
+@keyframes pulsate-border {
+    100% {
+        /* Mas brillo */
+        box-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 20px #bc13fe,
+            inset 0 0 4px #fff,
+            inset 0 0 15px #bc13fe;
+    }
+
+    0% {
+        /* Menos brillo */
+        box-shadow:
+            0 0 1px #fff,
+            0 0 3px #fff,
+            0 0 19px #bc13fe,
+            inset 0 0 4px #fff,
+            inset 0 0 13px #bc13fe;
+    }
+}
+
+/* Animación de parpadeo */
+@keyframes flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+
+        text-shadow:
+            0 0 4px #fff,
+            0 0 11px #fff,
+            0 0 19px #fff,
+            0 0 40px #bc13fe,
+            0 0 80px #bc13fe,
+            0 0 90px #bc13fe,
+            0 0 100px #bc13fe,
+            0 0 150px #bc13fe;
+    }
+
+    20%,
+    24%,
+    34% {
+        text-shadow: none;
+    }
+}
+
+@keyframes flicker-border {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+
+        box-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 20px #bc13fe,
+            inset 0 0 4px #fff,
+            inset 0 0 15px #bc13fe;
+    }
+
+    20%,
+    24%,
+    34% {
+        box-shadow: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    nav {
+        display: none;
+    }
+
+    .mobile-links {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 450px) {
+    .logo {
+        margin-left: 1rem;
+    }
+
+    .menu-btn {
+        margin-right: 1rem;
+    }
+
+    .dropdown-menu {
+        margin-right: 1rem;
+    }
+}
+
+@media screen and (prefers-reduced-motion) {
+    .dark .logo {
+        animation: none;
+    }
+
+    .dark .logo:hover {
+        animation: none;
+    }
+
+    .dark .menu-btn {
+        animation: none;
+    }
+
+    .dark .menu-btn:hover {
+        animation: none;
+    }
+}

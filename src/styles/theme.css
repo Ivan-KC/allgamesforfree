@@ -1,14 +1,23 @@
 :root {
     /* Colores base */
+    --logo: #aa3bff;
+    --header: #FAF3FF;
+    --header-h: #edd3ff;
     --bg: #ffffff;
     --text: #6b6375;
     --text-h: #08060d;
-    --border: #e5e4e7;
+    --border: #cacaca;
+    --fade-bg: var(--card-bg);
 
     /* Acentos */
     --accent: #aa3bff;
+    --accent-h: #cb86ff;
     --accent-bg: rgba(170, 59, 255, 0.1);
     --accent-border: rgba(170, 59, 255, 0.5);
+
+    /* Colores secundarios*/
+    --secondary: #ff9100;
+    --secondary-h: #ffaf46;
 
     /* Extras */
     --card-bg: #ffffff;
@@ -24,12 +33,20 @@
 
 /* Modo oscuro */
 .dark {
-    --bg: #121212;
+    --logo: #fff;
+    --header: #1a0e25;
+    --header-h: #290949;
+    --bg: #08000e;
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --border: #2e303a;
 
-    --accent: #c084fc;
+    /* Colores secundarios*/
+    --secondary: #ff7b00;
+    --secondary-h: #ca6200;
+
+    --accent: #9e1fff;
+    --accent-h: #7d17ca;
     --accent-bg: rgba(192, 132, 252, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
 
@@ -46,12 +63,15 @@
 /* Elección automática del buscador */
 @media (prefers-color-scheme: dark) {
     :root:not(.light) {
-        --bg: #121212;
+        --header: #1a0e25;
+        --header-h: #290949;
+        --bg: #08000e;
         --text: #9ca3af;
         --text-h: #f3f4f6;
         --border: #2e303a;
 
-        --accent: #c084fc;
+        --accent: #b555ff;
+        --accent-h: #b049ff;
         --accent-bg: rgba(192, 132, 252, 0.15);
         --accent-border: rgba(192, 132, 252, 0.5);
 
