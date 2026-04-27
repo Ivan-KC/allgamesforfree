@@ -1,5 +1,5 @@
 import { fetchGames } from "../services/fetchGames";
-import { gameCategories } from "../data/gameCategories";
+import { gameCategories } from "../utils/gameCategories";
 
 import ItemList from "../components/ItemList";
 import GameCard from "../components/GameCard";

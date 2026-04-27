@@ -78,9 +78,9 @@ export default function Header({ darkMode, setDarkMode }: any) {
               ⭐ Favoritos
             </Link>
 
-            <button disabled className="disabled">
+            <Link to="/history" onClick={() => setOpen(false)}>
               🕘 Historial
-            </button>
+            </Link>
 
             <button
               onClick={() => {

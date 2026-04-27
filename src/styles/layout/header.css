@@ -80,14 +80,14 @@ nav a:hover {
 .dark nav a:hover {
     color: var(--logo);
     text-shadow:
-            0 0 4px #fff,
-            0 0 11px #fff,
-            0 0 19px #fff,
-            0 0 40px #bc13fe,
-            0 0 80px #bc13fe,
-            0 0 90px #bc13fe,
-            0 0 100px #bc13fe,
-            0 0 150px #bc13fe;
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #bc13fe,
+        0 0 80px #bc13fe,
+        0 0 90px #bc13fe,
+        0 0 100px #bc13fe,
+        0 0 150px #bc13fe;
 }
 
 .menu-container {
@@ -327,6 +327,16 @@ nav a:hover {
 
     .dropdown-menu {
         margin-right: 1rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo {
+        width: 10rem;
+    }
+
+    .header {
+        height: 6.5rem;
     }
 }
 

@@ -8,6 +8,7 @@ import Games from "./pages/Games";
 import Giveaways from "./pages/Giveaways";
 import GameDetail from "./pages/GameDetail";
 import GiveawayDetail from "./pages/GiveawayDetail";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/game/:id" element={<GameDetail />} />
 
           <Route path="/giveaway/:id" element={<GiveawayDetail />} />
+
+          <Route path="history" element={<History />} />
 
         </Route>
 

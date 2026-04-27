@@ -7,6 +7,7 @@ import type { GameDetail } from "../types/GameDetail";
 import { fetchGameById } from "../services/fetchGameById";
 import { fetchGames } from "../services/fetchGames";
 import { useFavorites } from "../hooks/useFavorites";
+import { addToHistory } from "../utils/history";
 
 import GameCard from "../components/GameCard";
 import ImageWithLoader from "../components/ImageWithLoader";
@@ -25,7 +26,7 @@ export default function GameDetail() {
   const hasRequirements =
     requirements &&
     Object.values(requirements).some(value => value !== null && value !== "");
-  
+
 
   const formatGenre = (genre: string) =>
     genre.replace(/\s+/g, "-");
@@ -60,6 +61,18 @@ export default function GameDetail() {
         setRelatedGames(filtered);
       })
       .catch(console.error);
+
+  }, [game]);
+
+  useEffect(() => {
+    if (!game) return;
+
+    addToHistory({
+      id: game.id,
+      type: "game",
+      title: game.title,
+      image: game.thumbnail
+    });
 
   }, [game]);
 

@@ -6,6 +6,7 @@ import type { Giveaway } from "../types/Giveaway";
 import { fetchGiveawayById } from "../services/fetchGiveawayById";
 import { fetchGiveaways } from "../services/fetchGiveaways";
 import { useFavorites } from "../hooks/useFavorites";
+import { addToHistory } from "../utils/history";
 
 import GiveawayCard from "../components/GiveawayCard";
 
@@ -47,6 +48,17 @@ export default function GiveawayDetail() {
       })
       .catch(console.error);
 
+  }, [item]);
+
+  useEffect(() => {
+    if (!item) return;
+
+    addToHistory({
+      id: item.id,
+      type: "giveaway",
+      title: item.title,
+      image: item.image
+    });
   }, [item]);
 
   useEffect(() => {
