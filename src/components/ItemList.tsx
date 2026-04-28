@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useFavorites } from "../utils/useFavorites";
 
+import GameCard from "./GameCard";
+import GiveawayCard from "./GiveawayCard";
+import RewardCard from "./RewardCard";
+import BetaCard from "./BetaCard";
+
 import "../styles/components/search.css";
 
 type Category =
@@ -30,7 +35,6 @@ interface Props<T> {
 function ItemList<T>({
   title,
   fetchFunction,
-  CardComponent,
   categories = [{ value: "all", label: "Todos" }],
   platforms = [],
   filterFunction,
@@ -83,7 +87,7 @@ function ItemList<T>({
   let processedItems = Array.isArray(items) ? items : [];
 
   if (filterFunction) {
-    processedItems = items.filter(filterFunction);
+    processedItems = processedItems.filter(filterFunction);
   }
 
   // Búsqueda local
@@ -113,6 +117,33 @@ function ItemList<T>({
     return () => observer.disconnect();
   }, [processedItems]);
 
+  const getCardComponent = (item: any) => {
+  switch (item.source) {
+    case "game":
+      return GameCard;
+
+    case "giveaway":
+    {
+      switch (item.type?.toLowerCase()) {
+      case "game":
+        return GiveawayCard;
+
+      case "dlc":
+        return RewardCard;
+
+      case "early access":
+        return BetaCard;
+
+      default:
+        return GiveawayCard;
+    }
+    }
+
+    default:
+      return GiveawayCard;
+  }
+};
+
   return (
     <div>
       <div className="container">
@@ -138,15 +169,25 @@ function ItemList<T>({
           >
             <option value="all">Todos</option>
 
-            <optgroup label="Géneros">
-              {mainCategories
+            {tagCategories.length > 0 ? (
+              <optgroup label="Géneros">
+                {mainCategories
+                  .filter(c => c.value !== "all")
+                  .map(c => (
+                    <option key={c.value} value={c.value}>
+                      {c.label}
+                    </option>
+                  ))}
+              </optgroup>
+            ) : (
+              mainCategories
                 .filter(c => c.value !== "all")
                 .map(c => (
                   <option key={c.value} value={c.value}>
                     {c.label}
                   </option>
-                ))}
-            </optgroup>
+                ))
+            )}
 
             {tagCategories.length > 0 && (
               <optgroup label="Tags">
@@ -198,16 +239,32 @@ function ItemList<T>({
         </div>
 
         {/* Grid de resultados */}
-        <div className="grid">
-          {finalItems.map((item: any) => (
-            <CardComponent
-              key={item.id}
-              item={item}
-              isFavorite={isFavorite(`${favoritePrefix}-${item.id}`)}
-              onToggleFavorite={removeFavorite}
-            />
-          ))}
-        </div>
+        {finalItems.length === 0 ? (
+          <div className="no-results">
+            <h3>No se encontraron resultados</h3>
+
+            <p>
+              No hay {title.toLowerCase()} que coincidan con los filtros
+              {search && ` y la búsqueda "${search}"`}
+              .
+            </p>
+          </div>
+        ) : (
+          <div className="grid">
+            {finalItems.map((item: any) => {
+              const Component = getCardComponent(item);
+
+              return (
+                <Component
+                  key={item.id}
+                  item={item}
+                  isFavorite={isFavorite(`${favoritePrefix}-${item.id}`)}
+                  onToggleFavorite={removeFavorite}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

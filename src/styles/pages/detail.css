@@ -123,6 +123,17 @@ section h2 {
 }
 
 /* Descripción */
+.description {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.description p:last-child {
+    margin-bottom: 0;
+}
+
 section p {
     color: var(--text);
     line-height: 1.6;
@@ -180,12 +191,17 @@ section p {
 /* Requisitos */
 .requirements {
     list-style: none;
+    width: fit-content;
     padding: 0;
 }
 
 .requirements li {
     margin-bottom: 6px;
     color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 /* Texto de cargando */

@@ -47,6 +47,8 @@ export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) 
             <span className="tag">{item.genre}</span>
             <span className="tag">{item.platform}</span>
           </div>
+
+          <button>Jugar ahora</button>
         </div>
       </Link>
       <button

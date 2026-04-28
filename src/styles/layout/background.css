@@ -11,8 +11,12 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4px);
+    background: linear-gradient(30deg, 
+    rgb(0 0 0 / 30%) 0%, 
+    rgb(255 255 255 / 20%) 40%, 
+    rgb(255 255 255 / 100%) 100%
+    );
+    backdrop-filter: blur(6px);
 
     pointer-events: none;
 }
@@ -23,38 +27,44 @@
 }
 
 /* Props */
-.float-item {
-    width: 5rem;
+.float-wrapper {
     position: absolute;
-    filter: blur(2px);
+    animation: floatMove infinite ease-in-out;
+}
 
-    animation:
-        floatMove infinite ease-in-out,
-        spin linear infinite;
+.float-item {
+    width: 100%;
+    display: block;
+    animation: spin 60s linear infinite;
+    transition: opacity 2s ease-in-out;
+}
+
+/* Estados de los props */
+.float-item.enter {
+    opacity: 0;
+}
+
+.float-item.visible {
+    opacity: 1;
+}
+
+.float-item.exit {
+    opacity: 0;
 }
 
 /* Animación de movimiento */
 @keyframes floatMove {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    50% {
-        transform: translate(5rem, -10rem);
-    }
-
-    100% {
-        transform: translate(0, 0);
-    }
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(3rem, -4rem); }
+  40%  { transform: translate(-2rem, -8rem); }
+  60%  { transform: translate(4rem, -3rem); }
+  80%  { transform: translate(-3rem, -6rem); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Animación de giro */
 @keyframes spin {
-    from {
-        rotate: 0deg;
-    }
-
-    to {
-        rotate: 360deg;
-    }
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
 }

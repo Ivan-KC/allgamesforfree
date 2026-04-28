@@ -1,3 +1,5 @@
+import { safeFetch } from "../utils/safeFetch";
+
 export const fetchGames = async ({
   filter,
   sort,
@@ -22,10 +24,13 @@ export const fetchGames = async ({
     params.append("sort-by", sort);
   }
 
-  const url = `/api-freetogame/games${
-    params.toString() ? `?${params.toString()}` : ""
-  }`;
+  const url = `/api-freetogame/games${params.toString() ? `?${params.toString()}` : ""
+    }`;
 
-  const res = await fetch(url);
-  return res.json();
+  const data = await safeFetch(url, "fetchGames");
+
+  return data.map((item: any) => ({
+    ...item,
+    source: "game"
+  }));
 };

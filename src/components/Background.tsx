@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/layout/background.css";
 
 import bg1 from "../assets/background/bg-prop-1.png";
@@ -25,54 +25,143 @@ const images = [
   bg13, bg14, bg15, bg16
 ];
 
+type Item = {
+  id: number;
+  image: string;
+  style: React.CSSProperties;
+  state: "enter" | "visible" | "exit";
+};
+
+// Cantidad de imagenes según pantalla
+const getItemCount = () => {
+  const w = window.innerWidth;
+  if (w < 500) return 4;
+  if (w < 900) return 6;
+  return 8;
+};
+
+// Posiciones distribuidas
+const randomPos = () => ({
+  top: `${10 + Math.random() * 80}%`,
+  left: `${10 + Math.random() * 80}%`,
+  width: `${4 + Math.random() * 6}rem`
+});
+
 export default function Background() {
-    const rows = 4;
-    const cols = 4;
+  const [items, setItems] = useState<Item[]>([]);
 
-    const items = useMemo(() => {
-        const generated = [];
+  // Imágenes disponibles que no están en pantalla
+  const availableRef = useRef<string[]>([]);
 
-        for (let row = 0; row < rows; row++) {
-            for (let col = 0; col < cols; col++) {
-                const i = row * cols + col;
+  const idRef = useRef(0);
 
-                const baseTop = (row / rows) * 100;
-                const baseLeft = (col / cols) * 100;
+  const getId = () => {
+    idRef.current += 1;
+    return idRef.current;
+  };
 
-                // Posiciones con ruido                
-                const offsetTop = (Math.random() - 0.5) * 10;
-                const offsetLeft = (Math.random() - 0.5) * 10;
+  useEffect(() => {
+    const count = getItemCount();
 
-                generated.push({
-                    id: i,
-                    image: images[i % images.length],
-                    style: {
-                        top: `${baseTop + offsetTop}%`,
-                        left: `${baseLeft + offsetLeft}%`,
-                        animationDuration: `${25 + Math.random() * 10}s`,
-                        width: `${5 + Math.random() * 10}rem`
-                    }
-                });
-            }
+    const shuffled = [...images].sort(() => Math.random() - 0.5);
+
+    const initial = shuffled.slice(0, count);
+
+    availableRef.current = shuffled.slice(count);
+
+    setItems(
+      initial.map((img) => ({
+        id: getId(),
+        image: img,
+        state: "enter",
+        style: {
+          ...randomPos(),
+          animationDuration: `${40 + Math.random() * 40}s`
         }
-
-        return generated;
-    }, []);
-
-    return (
-        <>
-            <div className="floating-bg">
-                {items.map(item => (
-                    <img
-                        key={item.id}
-                        src={item.image}
-                        className="float-item"
-                        style={item.style}
-                    />
-                ))}
-            </div>
-
-            <div className="floating-overlay"></div>
-        </>
+      }))
     );
+
+    // Activar fade-in después de crear
+    setTimeout(() => {
+      setItems(prev =>
+        prev.map(item => ({ ...item, state: "visible" }))
+      );
+    }, 50);
+
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setItems(prev => {
+        if (availableRef.current.length === 0) return prev;
+
+        const index = Math.floor(Math.random() * prev.length);
+
+        const updated = [...prev];
+
+        // Marcar como exit
+        updated[index] = {
+          ...updated[index],
+          state: "exit"
+        };
+
+        // Después del fade, reemplazar
+        setTimeout(() => {
+          setItems(current => {
+            if (!current[index]) return current;
+
+            const copy = [...current];
+
+            const nextImage = availableRef.current.shift()!;
+            availableRef.current.push(copy[index].image);
+
+            copy[index] = {
+              id: getId(),
+              image: nextImage,
+              state: "enter",
+              style: {
+                ...randomPos(),
+                animationDuration: `${40 + Math.random() * 40}s`
+              }
+            };
+
+            // Fade-in
+            setTimeout(() => {
+              setItems(latest =>
+                latest.map((it, i) =>
+                  i === index ? { ...it, state: "visible" } : it
+                )
+              );
+            }, 50);
+
+            return copy;
+          });
+        }, 2000); // Duración del fade-out
+
+        return updated;
+      });
+    }, 20000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <div className="floating-bg">
+        {items.map(item => (
+          <div
+            className="float-wrapper"
+            style={item.style}
+          >
+            <img
+              src={item.image}
+              className={`float-item ${item.state}`}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div className="floating-overlay" />
+    </>
+  );
 }

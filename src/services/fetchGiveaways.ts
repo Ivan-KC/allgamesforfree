@@ -1,3 +1,5 @@
+import { safeFetch } from "../utils/safeFetch";
+
 export const fetchGiveaways = async ({
   filter,
   sort,
@@ -22,10 +24,13 @@ export const fetchGiveaways = async ({
     params.append("sort-by", sort);
   }
 
-  const url = `/api-gamerpower/giveaways${
-    params.toString() ? `?${params.toString()}` : ""
-  }`;
+  const url = `/api-gamerpower/giveaways${params.toString() ? `?${params.toString()}` : ""
+    }`;
 
-  const res = await fetch(url);
-  return res.json();
+  const data =  await safeFetch(url, "fetchGiveaways");
+
+  return data.map((item: any) => ({
+    ...item,
+    source: "giveaway"
+  }));
 };

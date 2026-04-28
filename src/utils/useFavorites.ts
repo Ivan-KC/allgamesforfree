@@ -6,12 +6,23 @@ type FavoritesState = {
 
 const DEFAULT_COLLECTION = "Favoritos";
 
+const safeParse = (value: string | null): FavoritesState => {
+  try {
+    const parsed = value ? JSON.parse(value) : null;
+
+    if (!parsed?.collections || typeof parsed.collections !== "object") {
+      return { collections: { [DEFAULT_COLLECTION]: [] } };
+    }
+
+    return parsed;
+  } catch {
+    return { collections: { [DEFAULT_COLLECTION]: [] } };
+  }
+};
+
 export function useFavorites() {
   const [data, setData] = useState<FavoritesState>(() => {
-    const stored = localStorage.getItem("favorites");
-    return stored
-      ? JSON.parse(stored)
-      : { collections: { [DEFAULT_COLLECTION]: [] } };
+    return safeParse(localStorage.getItem("favorites"));
   });
 
   // Agregar a colección
@@ -58,7 +69,7 @@ export function useFavorites() {
       newData = { collections };
       return newData;
     });
-    
+
     setTimeout(() => {
       // Sacar favorito
       localStorage.setItem("favorites", JSON.stringify(newData));
@@ -103,6 +114,6 @@ export function useFavorites() {
     addToCollection,
     removeFavorite,
     isFavorite,
-    toggleFavorite  
+    toggleFavorite
   };
 }

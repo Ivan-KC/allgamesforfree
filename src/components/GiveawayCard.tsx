@@ -47,7 +47,11 @@ export default function GiveawayCard({ item, isFavorite, onToggleFavorite }: Pro
             <span className="tag">{item.platforms}</span>
           </div>
 
-          <div className="price"><span>Gratis</span><p>{item.worth}</p></div>
+          <div className="price">
+            <span>Gratis</span>
+            <p>{item.worth}</p>
+            <button>Reclamar</button>
+          </div>
         </div>
       </Link>
       <button

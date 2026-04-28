@@ -47,6 +47,8 @@ export default function RewardCard({ item, isFavorite, onToggleFavorite }: Props
             <span className="tag">DLC</span>
             <span className="tag">{item.platforms}</span>
           </div>
+
+          <button>Reclamar recompensa</button>
         </div>
       </Link>
       <button

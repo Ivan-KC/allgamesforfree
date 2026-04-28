@@ -47,6 +47,8 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
             <span className="tag">Beta</span>
             <span className="tag">{item.platforms}</span>
           </div>
+
+          <button>Jugar ahora</button>
         </div>
       </Link>
       <button

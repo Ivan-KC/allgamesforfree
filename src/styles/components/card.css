@@ -192,3 +192,17 @@
 	width: fit-content;
 	text-decoration: none;
 }
+
+.price button {
+	margin-left: 1rem;
+    width: stretch;
+}
+
+.card-content button {
+	background: var(--accent);
+	font-weight: normal;
+}
+
+.card-content button:hover {
+	background: var(--accent-h);
+}

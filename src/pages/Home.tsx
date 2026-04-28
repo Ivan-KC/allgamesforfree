@@ -33,11 +33,11 @@ function Home() {
     fetchGiveaways().then(setGiveaways);
   }, []);
 
-  const gamesList = games.slice(0, 10);
+  const gamesList = games.slice(0, 5);
 
   const giveawaysGames = giveaways
     .filter(g => g.type === "Game")
-    .slice(0, 10);
+    .slice(0, 5);
 
   const rewards = giveaways
     .filter(g => g.type === "DLC")

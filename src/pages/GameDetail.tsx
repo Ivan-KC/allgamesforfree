@@ -174,10 +174,12 @@ export default function GameDetail() {
 
       <section>
         <h2>Descripción</h2>
-        {game.description
-          .split(/\r?\n\r?\n/)
-          .map((p, i) => <p key={i}>{p}</p>)
-        }
+        <div className="description">
+          {game.description
+            .split(/\r?\n\r?\n/)
+            .map((p, i) => <p key={i}>{p}</p>)
+          }
+        </div>
       </section>
 
       <section>
