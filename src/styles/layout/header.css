@@ -74,7 +74,6 @@ nav a:last-child {
 nav a:hover {
     color: var(--text-h);
     background: var(--header-h);
-    animation: flicker 1.5s alternate;
 }
 
 .dark nav a:hover {
@@ -88,6 +87,7 @@ nav a:hover {
         0 0 90px #bc13fe,
         0 0 100px #bc13fe,
         0 0 150px #bc13fe;
+    animation: flicker 1.5s alternate;
 }
 
 .menu-container {
