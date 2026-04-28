@@ -16,7 +16,7 @@ export default function History() {
   const [games, setGames] = useState<Game[]>([]);
   const [giveaways, setGiveaways] = useState<Giveaway[]>([]);
 
-  const { toggleFavorite, isFavorite } = useFavorites();
+  const { removeFavorite, isFavorite } = useFavorites();
 
   useEffect(() => {
     setHistory(getHistory());
@@ -58,7 +58,7 @@ export default function History() {
                   key={game.id}
                   item={game}
                   isFavorite={isFavorite(`game-${game.id}`)}
-                  onToggleFavorite={toggleFavorite}
+                  onToggleFavorite={removeFavorite}
                 />
               ))}
             </div>
@@ -73,7 +73,7 @@ export default function History() {
                   key={g.id}
                   item={g}
                   isFavorite={isFavorite(`giveaway-${g.id}`)}
-                  onToggleFavorite={toggleFavorite}
+                  onToggleFavorite={removeFavorite}
                 />
               ))}
             </div>
