@@ -27,6 +27,7 @@ body {
 /* Contenedor principal */
 .container {
     max-width: 1600px;
+    min-height: calc(100vh - 6rem);
     margin: 0 auto;
     padding: 1rem;
 }

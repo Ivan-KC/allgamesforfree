@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 import type { Giveaway } from "../types/Giveaway";
 import { fetchGiveawayById } from "../services/fetchGiveawayById";
@@ -13,9 +14,13 @@ import GiveawayCard from "../components/GiveawayCard";
 export default function GiveawayDetail() {
   const { id } = useParams();
   const [item, setItem] = useState<Giveaway | null>(null);
-  const { toggleFavorite, isFavorite } = useFavorites();
   const [relatedGiveaways, setRelatedGiveaways] = useState<Giveaway[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const { isFavorite, removeFavorite } = useFavorites();
+
+  const ctx = useOutletContext<any>();
+  const openFavoritesModal = ctx?.openFavoritesModal;
 
   const formatDate = (date: string) =>
     new Date(date).toLocaleDateString("es-AR", {
@@ -113,10 +118,18 @@ export default function GiveawayDetail() {
               Reclamar ahora
             </a>
 
-            <button onClick={() => toggleFavorite(favId)}>
+            <button
+              onClick={() => {
+                if (isFavorite(favId)) {
+                  removeFavorite(favId);
+                } else {
+                  openFavoritesModal(favId);
+                }
+              }}
+            >
               {isFavorite(favId)
-                ? "Sacar de favoritos ❤️"
-                : "Agregar a favoritos 🤍"}
+                ? "❤️ En favoritos"
+                : "🤍 Agregar a favoritos"}
             </button>
           </div>
         </div>
@@ -213,7 +226,7 @@ export default function GiveawayDetail() {
                 key={g.id}
                 item={g}
                 isFavorite={isFavorite(`giveaway-${g.id}`)}
-                onToggleFavorite={toggleFavorite}
+                onToggleFavorite={removeFavorite}
               />
             ))}
           </div>

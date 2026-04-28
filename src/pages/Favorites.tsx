@@ -27,7 +27,7 @@ function Favorites() {
 
   return (
     <div className="container">
-      <h1>⭐ Tus Favoritos</h1>
+      <h1>Tus Favoritos</h1>
 
       {Object.entries(collections).map(([name, ids]) => {
 

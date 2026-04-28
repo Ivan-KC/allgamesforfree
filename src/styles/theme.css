@@ -8,6 +8,7 @@
     --text-h: #08060d;
     --border: #cacaca;
     --fade-bg: var(--card-bg);
+    --footer: #1e1e1f;
 
     /* Acentos */
     --accent: #aa3bff;
@@ -40,6 +41,7 @@
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --border: #2e303a;
+    --footer: #050505;
 
     /* Colores secundarios*/
     --secondary: #ff7b00;

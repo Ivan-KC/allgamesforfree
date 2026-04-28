@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 import type { Game } from "../types/Game";
 import type { GameDetail } from "../types/GameDetail";
@@ -18,9 +19,13 @@ import "../styles/components/spinner.css";
 export default function GameDetail() {
   const { id } = useParams();
   const [game, setGame] = useState<GameDetail | null>(null);
-  const { toggleFavorite, isFavorite } = useFavorites();
   const [relatedGames, setRelatedGames] = useState<Game[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const { isFavorite, removeFavorite } = useFavorites();
+
+  const ctx = useOutletContext<any>();
+  const openFavoritesModal = ctx?.openFavoritesModal;
 
   const requirements = game?.minimum_system_requirements;
   const hasRequirements =
@@ -116,8 +121,16 @@ export default function GameDetail() {
               Jugar ahora
             </a>
 
-            <button onClick={() => toggleFavorite(favId)}>
-              {isFavorite(favId) ? "Sacar de favoritos ❤️" : "Agregar a favoritos 🤍"}
+            <button
+              onClick={() => {
+                if (isFavorite(favId)) {
+                  removeFavorite(favId);
+                } else {
+                  openFavoritesModal(favId);
+                }
+              }}
+            >
+              {isFavorite(favId) ? "❤️ En favoritos" : "🤍 Agregar a favoritos"}
             </button>
           </div>
         </div>
@@ -222,7 +235,7 @@ export default function GameDetail() {
                 key={g.id}
                 item={g}
                 isFavorite={isFavorite(`game-${g.id}`)}
-                onToggleFavorite={toggleFavorite}
+                onToggleFavorite={removeFavorite}
               />
             ))}
           </div>

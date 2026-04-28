@@ -4,6 +4,7 @@ import { useFavorites } from "../utils/useFavorites";
 
 import Header from "./Header";
 import Background from "./Background";
+import Footer from "./Footer";
 
 import "../styles/components/favorite-modal.css";
 
@@ -62,6 +63,8 @@ export default function Layout() {
       <Background />
 
       <Outlet context={{ openFavoritesModal }} />
+
+      <Footer />
 
       {showModal && selectedId && (
         <div className="modal-overlay">

@@ -8,9 +8,7 @@ function Contact() {
 
   return (
     <div className="contact-container">
-      <h1 className="contact-title">
-        📞 Contacto
-      </h1>
+      <h1 className="contact-title">Contacto</h1>
 
       <p className="contact-subtitle">
         ¿Tenés dudas, sugerencias o querés colaborar?
@@ -23,7 +21,7 @@ function Contact() {
 
           <h2>Información</h2>
 
-          <p>📧 contacto@allgames.com</p>
+          <p>📧 allgamesforfree@contact.com</p>
           <p>📱 +54 11 1234-5678</p>
           <p>📍 Buenos Aires, Argentina</p>
 
