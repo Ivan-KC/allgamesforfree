@@ -1,15 +1,21 @@
 export const fetchGiveaways = async ({
   filter,
-  sort
+  sort,
+  platform
 }: {
   filter?: string;
   sort?: string;
+  platform?: string;
 } = {}) => {
 
   const params = new URLSearchParams();
 
   if (filter && filter !== "all") {
     params.append("type", filter);
+  }
+
+  if (platform && platform !== "all") {
+    params.append("platform", platform);
   }
 
   if (sort) {

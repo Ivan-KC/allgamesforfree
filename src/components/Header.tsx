@@ -55,7 +55,7 @@ export default function Header({ darkMode, setDarkMode }: any) {
         {open && (
           <div className="dropdown-menu">
 
-            {/* Links principales (solo visibles en mobile via CSS) */}
+            {/* Links principales (solo visibles en mobile) */}
             <div className="mobile-links">
               <Link to="/games" onClick={() => setOpen(false)}>
                 🎮 Juegos

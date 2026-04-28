@@ -11,14 +11,17 @@ type Category =
     label: string;
     group?: string;
   };
+
 interface Props<T> {
   title: string;
   fetchFunction: (params: {
     filter?: string;
     sort?: string;
+    platform?: string;
   }) => Promise<T[]>;
   CardComponent: React.ComponentType<any>;
   categories?: Category[];
+  platforms?: { value: string; label: string }[];
   favoritePrefix: string;
   filterFunction?: (item: T) => boolean;
   sortOptions?: { value: string; label: string }[];
@@ -29,6 +32,7 @@ function ItemList<T>({
   fetchFunction,
   CardComponent,
   categories = [{ value: "all", label: "Todos" }],
+  platforms = [],
   filterFunction,
   sortOptions = [],
   favoritePrefix
@@ -49,6 +53,8 @@ function ItemList<T>({
     c => c.group === "tag"
   );
 
+  const platform = searchParams.get("platform") || "all";
+
   const { isFavorite, removeFavorite } = useFavorites();
 
   const filter = searchParams.get("filter") || "all";
@@ -58,7 +64,7 @@ function ItemList<T>({
   useEffect(() => {
     let cancelled = false;
 
-    fetchFunction({ filter, sort })
+    fetchFunction({ filter, sort, platform })
       .then(data => {
         if (!cancelled) {
           setItems(Array.isArray(data) ? data : []);
@@ -71,7 +77,7 @@ function ItemList<T>({
     return () => {
       cancelled = true;
     };
-  }, [fetchFunction, filter, sort]);
+  }, [fetchFunction, filter, sort, platform]);
 
   // Filtro extra opcional (casos especiales)
   let processedItems = Array.isArray(items) ? items : [];
@@ -125,37 +131,54 @@ function ItemList<T>({
           />
 
           {/* Filtros */}
-          <div className="filters">
-            {mainCategories.map(c => (
-              <button
-                key={c.value}
-                onClick={() => updateParams({ filter: c.value })}
-                className={
-                  filter === c.value
-                    ? "filter-btn active"
-                    : "filter-btn"
-                }
-              >
-                {c.label}
-              </button>
-            ))}
-          </div>
-
           <select
             id="filter-select"
             value={filter}
             onChange={(e) => updateParams({ filter: e.target.value })}
           >
-            <option value="">Más filtros...</option>
+            <option value="all">Todos</option>
 
-            <optgroup label="Tags">
-              {tagCategories.map(c => (
-                <option key={c.value} value={c.value}>
-                  {c.label}
+            <optgroup label="Géneros">
+              {mainCategories
+                .filter(c => c.value !== "all")
+                .map(c => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+            </optgroup>
+
+            {tagCategories.length > 0 && (
+              <optgroup label="Tags">
+                {tagCategories.map(c => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </optgroup>
+            )}
+          </select>
+
+          {/* Plataforma */}
+          {platforms.length > 0 && (
+            <select
+              id="platform-select"
+              value={platform}
+              onChange={(e) =>
+                updateParams({
+                  platform: e.target.value
+                })
+              }
+            >
+              <option value="all">Todas las plataformas</option>
+
+              {platforms.map(p => (
+                <option key={p.value} value={p.value}>
+                  {p.label}
                 </option>
               ))}
-            </optgroup>
-          </select>
+            </select>
+          )}
 
           {/* Orden */}
           <select

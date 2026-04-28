@@ -43,10 +43,22 @@
 .footer-right {
     display: flex;
     gap: 12px;
+    flex-direction: column;
+}
+
+.social-title {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .icon {
     font-size: 1.5rem;
+    display: inline-block;
     transition: transform 0.2s, color 0.2s;
     color: var(--text);
 }
@@ -55,10 +67,17 @@
     transform: scale(1.2);
 }
 
-/* Bottom */
+/* Abajo del todo */
 .footer-bottom {
     margin-top: 20px;
     text-align: center;
     font-size: 0.8rem;
     opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .footer-left {
+        width: stretch;
+    }
 }

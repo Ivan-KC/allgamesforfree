@@ -37,43 +37,8 @@
 }
 
 /* Botones de los filtros */
-.filter-btn {
-  height: 38px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #222;
-  color: white;
-  border: none;
-  transition: 0.2s;
-}
-
-  .filter-btn:hover {
-    background: var(--accent-h);
-  }
-
-  .filter-btn.active {
-    background: var(--accent);
-  }
-
-   .filter-btn.active:hover {
-    background: var(--header-h);
-  }
-
-#filter-select {
-  height: 38px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  color: var(--text);
-  font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
-  font-size: 18px;
-  outline-color: var(--accent);
-  cursor: pointer;
-}
-
-/* Selección de orden */
+#filter-select,
+#platform-select,
 #sort-select {
   height: 38px;
   padding: 6px 10px;

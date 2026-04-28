@@ -14,6 +14,10 @@ function Games() {
       categories={[
         { value: "all", label: "Todos" },
         ...gameCategories]}
+      platforms={[ 
+        { value: "pc", label: "Windows" },
+        { value: "browser", label: "Browser" }
+      ]}
       sortOptions={[
         { value: "relevance", label: "Relevancia" },
         { value: "popularity", label: "Popularidad" },
