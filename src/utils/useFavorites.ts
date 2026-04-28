@@ -68,6 +68,15 @@ export function useFavorites() {
     }, 0);
   };
 
+  // Alternar favorito
+  const toggleFavorite = (id: string) => {
+    if (isFavorite(id)) {
+      removeFavorite(id);
+    } else {
+      addToCollection(id, DEFAULT_COLLECTION);
+    }
+  };
+
   const isFavorite = (id: string) => {
     return Object.values(data.collections).some(col =>
       col.includes(id)
@@ -93,6 +102,7 @@ export function useFavorites() {
     collections: data.collections,
     addToCollection,
     removeFavorite,
-    isFavorite
+    isFavorite,
+    toggleFavorite  
   };
 }
