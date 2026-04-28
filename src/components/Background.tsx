@@ -1,23 +1,28 @@
 import { useMemo } from "react";
 import "../styles/layout/background.css";
 
+import bg1 from "../assets/background/bg-prop-1.png";
+import bg2 from "../assets/background/bg-prop-2.png";
+import bg3 from "../assets/background/bg-prop-3.png";
+import bg4 from "../assets/background/bg-prop-4.png";
+import bg5 from "../assets/background/bg-prop-5.png";
+import bg6 from "../assets/background/bg-prop-6.png";
+import bg7 from "../assets/background/bg-prop-7.png";
+import bg8 from "../assets/background/bg-prop-8.png";
+import bg9 from "../assets/background/bg-prop-9.png";
+import bg10 from "../assets/background/bg-prop-10.png";
+import bg11 from "../assets/background/bg-prop-11.png";
+import bg12 from "../assets/background/bg-prop-12.png";
+import bg13 from "../assets/background/bg-prop-13.png";
+import bg14 from "../assets/background/bg-prop-14.png";
+import bg15 from "../assets/background/bg-prop-15.png";
+import bg16 from "../assets/background/bg-prop-16.png";
+
 const images = [
-    "/src/assets/background/bg-prop-1.png",
-    "/src/assets/background/bg-prop-2.png",
-    "/src/assets/background/bg-prop-3.png",
-    "/src/assets/background/bg-prop-4.png",
-    "/src/assets/background/bg-prop-5.png",
-    "/src/assets/background/bg-prop-6.png",
-    "/src/assets/background/bg-prop-7.png",
-    "/src/assets/background/bg-prop-8.png",
-    "/src/assets/background/bg-prop-9.png",
-    "/src/assets/background/bg-prop-10.png",
-    "/src/assets/background/bg-prop-11.png",
-    "/src/assets/background/bg-prop-12.png",
-    "/src/assets/background/bg-prop-13.png",
-    "/src/assets/background/bg-prop-14.png",
-    "/src/assets/background/bg-prop-15.png",
-    "/src/assets/background/bg-prop-16.png",
+  bg1, bg2, bg3, bg4,
+  bg5, bg6, bg7, bg8,
+  bg9, bg10, bg11, bg12,
+  bg13, bg14, bg15, bg16
 ];
 
 export default function Background() {
