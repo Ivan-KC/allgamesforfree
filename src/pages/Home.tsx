@@ -23,7 +23,7 @@ function Home() {
   const [games, setGames] = useState<Game[]>([]);
   const [giveaways, setGiveaways] = useState<Giveaway[]>([]);
 
-  const { toggleFavorite, isFavorite } = useFavorites();
+  const { removeFavorite, isFavorite } = useFavorites();
 
   useEffect(() => {
     // Juegos gratis
@@ -70,7 +70,7 @@ function Home() {
               isFavorite={isFavorite(
                 getId("game", game.id)
               )}
-              onToggleFavorite={toggleFavorite}
+              onToggleFavorite={removeFavorite}
             />
           ))}
         </div>
@@ -91,7 +91,7 @@ function Home() {
               isFavorite={isFavorite(
                 getId("giveaway", giveaway.id)
               )}
-              onToggleFavorite={toggleFavorite}
+              onToggleFavorite={removeFavorite}
             />
           ))}
         </div>
@@ -112,7 +112,7 @@ function Home() {
               isFavorite={isFavorite(
                 getId("giveaway", giveaway.id)
               )}
-              onToggleFavorite={toggleFavorite}
+              onToggleFavorite={removeFavorite}
             />
           ))}
         </div>
@@ -133,7 +133,7 @@ function Home() {
               isFavorite={isFavorite(
                 getId("giveaway", giveaway.id)
               )}
-              onToggleFavorite={toggleFavorite}
+              onToggleFavorite={removeFavorite}
             />
           ))}
         </div>

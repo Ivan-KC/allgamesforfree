@@ -20,11 +20,9 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 30px;
-
     padding: 30px;
-
+    border: 1px solid var(--border);
     border-radius: 16px;
-
     background: var(--card-bg);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
@@ -35,6 +33,7 @@
 
 .contact-info p {
     margin: 10px 0;
+    overflow-wrap: break-word;
 }
 
 .contact-form {
@@ -45,35 +44,34 @@
 
 .contact-form input,
 .contact-form textarea {
-
     padding: 12px;
-
+    border: 1px solid var(--border);
     border-radius: 10px;
-
-    border: none;
-
     background: var(--input-bg);
+    font-family: 'Bahnschrift', system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 
 .contact-form button {
-
     padding: 14px;
-
-    border: none;
-
     border-radius: 10px;
-
-    background: #4f46e5;
-
-    color: white;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.2s;
 }
 
 .contact-form button:hover {
     transform: scale(1.03);
+}
+
+.leaflet-container {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+    }
 }
