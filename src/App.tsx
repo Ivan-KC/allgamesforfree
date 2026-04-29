@@ -13,7 +13,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/allgamesforfree">
       <ScrollToTop />
       
       <Routes>
@@ -30,9 +30,9 @@ function App() {
 
           <Route path="giveaways" element={<Giveaways />} />
 
-          <Route path="/game/:id" element={<GameDetail />} />
+          <Route path="game/:id" element={<GameDetail />} />
 
-          <Route path="/giveaway/:id" element={<GiveawayDetail />} />
+          <Route path="giveaway/:id" element={<GiveawayDetail />} />
 
           <Route path="history" element={<History />} />
 
