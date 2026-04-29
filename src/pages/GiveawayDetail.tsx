@@ -57,6 +57,23 @@ export default function GiveawayDetail() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const getFilterByType = (type?: string) => {
+    switch (type?.toLowerCase()) {
+      case "game":
+        return "game";
+
+      case "dlc":
+        return "loot";
+
+      case "early access":
+      case "beta":
+        return "beta";
+
+      default:
+        return "game";
+    }
+  };
+
   const [allRelated, setAllRelated] = useState<any[]>([]);
 
   useEffect(() => {
@@ -254,7 +271,7 @@ export default function GiveawayDetail() {
           <h2>Giveaways similares</h2>
 
           <Link
-            to={`/giveaways?filter=${item.type.toLowerCase()}`}
+            to={`/giveaways?filter=${getFilterByType(item.type)}`}
             className="see-more"
           >
             Ver más <span>→</span>

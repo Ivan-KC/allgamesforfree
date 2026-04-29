@@ -9,6 +9,7 @@ import { fetchGameById } from "../services/fetchGameById";
 import { fetchGames } from "../services/fetchGames";
 import { useFavorites } from "../utils/useFavorites";
 import { addToHistory } from "../utils/history";
+import { gameCategories } from "../utils/gameCategories";
 
 import GameCard from "../components/GameCard";
 import ImageWithLoader from "../components/ImageWithLoader";
@@ -32,9 +33,34 @@ export default function GameDetail() {
     requirements &&
     Object.values(requirements).some(value => value !== null && value !== "");
 
+  const genreAliases: Record<string, string> = {
+    arpg: "action-rpg",
+    "action rpg": "action-rpg",
 
-  const formatGenre = (genre: string) =>
-    genre.replace(/\s+/g, "-");
+    mmoarpg: "mmorpg",
+    mmorpg: "mmorpg",
+
+    cards: "card",
+    "card game": "card",
+  };
+
+  function getCategoryFromGenre(genre: string): string {
+    if (!genre) return "all";
+
+    const normalized = genre.toLowerCase().trim();
+
+    const aliasMatch = genreAliases[normalized];
+    if (aliasMatch) return aliasMatch;
+
+    const categoryMatch = gameCategories.find(c =>
+      c.label.toLowerCase() === normalized ||
+      c.value.toLowerCase() === normalized
+    );
+
+    if (categoryMatch) return categoryMatch.value;
+
+    return normalized.toLowerCase().replace(/\s+/g, "-");
+  }
 
   const formatDate = (date: string) =>
     new Date(date).toLocaleDateString("es-AR", {
@@ -77,7 +103,7 @@ export default function GameDetail() {
     if (!game) return;
 
     fetchGames({
-      filter: formatGenre(game.genre)
+      filter: getCategoryFromGenre(game.genre)
     })
       .then(data => {
         const filtered = data
@@ -249,7 +275,7 @@ export default function GameDetail() {
           <h2>Juegos similares</h2>
 
           <Link
-            to={`/games?filter=${formatGenre(game.genre)}`}
+            to={`/games?filter=${getCategoryFromGenre(game.genre)}`}
             className="see-more"
           >
             Ver más <span>→</span>

@@ -46,7 +46,6 @@ export default function RewardCard({ item, isFavorite, onToggleFavorite }: Props
           </div>
 
           <div className="tags">
-            <span className="tag">Recompensa</span>
             {item.platforms
               ?.split(",")
               .map(p => p.trim())

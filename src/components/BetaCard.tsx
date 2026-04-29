@@ -46,7 +46,6 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
           </div>
 
           <div className="tags">
-            <span className="tag">Beta</span>
             {item.platforms
               ?.split(",")
               .map(p => p.trim())
