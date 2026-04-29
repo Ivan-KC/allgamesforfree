@@ -13,7 +13,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
-    <BrowserRouter basename="/allgamesforfree">
+    <BrowserRouter>
       <ScrollToTop />
       
       <Routes>
