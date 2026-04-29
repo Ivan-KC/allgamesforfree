@@ -6,6 +6,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 // Troleamos a CORS usando un Proxy cuando hacemos fetch
 
 export default defineConfig({
+  base: "/allgamesforfree/",
+
   plugins: [
     react(),
 
