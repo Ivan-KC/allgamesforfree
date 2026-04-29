@@ -1,7 +1,7 @@
 export const giveawayPlatforms = [
   { value: "pc", label: "PC" },
   { value: "steam", label: "Steam" },
-  { value: "epic-store", label: "Epic Store" },
+  { value: "epic-games-store", label: "Epic Store" },
   { value: "itchio", label: "Itch.io" },
   { value: "gog", label: "GOG" },
   { value: "origin", label: "Origin" },

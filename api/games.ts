@@ -1,13 +1,19 @@
 export default async function handler(req: any, res: any) {
-  const query = req.url.split("?")[1] || "";
+  const { category, platform, "sort-by": sortBy } = req.query;
 
-  const url = `https://www.gamerpower.com/api/giveaways${
-    query ? `?${query}` : ""
+  const params = new URLSearchParams();
+
+  if (category) params.append("category", category);
+  if (platform) params.append("platform", platform);
+  if (sortBy) params.append("sort-by", sortBy);
+
+  const url = `https://www.freetogame.com/api/games${
+    params.toString() ? `?${params.toString()}` : ""
   }`;
 
   const response = await fetch(url);
   const data = await response.json();
 
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.status(200).json(data);
+  return res.status(200).json(data);
 }

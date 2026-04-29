@@ -37,7 +37,7 @@ export async function safeFetch(url: string, label: string) {
     }
 
     // 3. Exito
-    console.log(`✅ fetchGames OK → ${Array.isArray(data) ? data.length : 1} items`, {
+    console.log(`✅ ${label} OK → ${Array.isArray(data) ? data.length : 1} items`, {
       url
     });
 
