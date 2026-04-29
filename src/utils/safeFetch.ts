@@ -12,8 +12,6 @@ export async function safeFetch(url: string, label: string) {
 
     // 1. Error de HTTP
     if (!res.ok && !data) {
-      const text = await res.text();
-
       console.error(
         ` Error de HTTP en ${label}\n` +
         `URL: ${url}\n` +

@@ -36,7 +36,7 @@ export default function Footer() {
 
           <div className="social-icons">
 
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="icon">
+            <a href="https://github.com/Ivan-KC/allgamesforfree/" target="_blank" rel="noopener noreferrer" className="icon">
               <img src={github} alt="GitHub" />
             </a>
 

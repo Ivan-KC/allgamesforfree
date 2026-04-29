@@ -1,4 +1,5 @@
 import { safeFetch } from "../utils/safeFetch";
+import { API } from "../utils/API";
 
 export const fetchGames = async ({
   filter,
@@ -24,8 +25,7 @@ export const fetchGames = async ({
     params.append("sort-by", sort);
   }
 
-  const url = `/api-freetogame/games${params.toString() ? `?${params.toString()}` : ""
-    }`;
+  const url = `${API.freetogame}/games${params.toString() ? `?${params.toString()}` : ""}`;
 
   const data = await safeFetch(url, "fetchGames");
 
