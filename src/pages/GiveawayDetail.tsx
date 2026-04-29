@@ -98,6 +98,22 @@ export default function GiveawayDetail() {
     item.end_date !== "N/A" &&
     !isNaN(new Date(item.end_date).getTime());
 
+  const getClaimText = (type?: string) => {
+    switch (type?.toLowerCase()) {
+      case "game":
+        return "Reclamar ahora";
+
+      case "dlc":
+        return "Obtener recompensa";
+
+      case "early access":
+        return "Acceder a la beta";
+
+      default:
+        return "Reclamar";
+    }
+  };
+
   return (
     <div className="detail-container">
 
@@ -115,7 +131,7 @@ export default function GiveawayDetail() {
 
           <div className="detail-actions">
             <a href={item.open_giveaway_url} target="_blank">
-              Reclamar ahora
+              {getClaimText(item.type)}
             </a>
 
             <button
@@ -127,9 +143,10 @@ export default function GiveawayDetail() {
                 }
               }}
             >
-              {isFavorite(favId)
-                ? "❤️ En favoritos"
-                : "🤍 Agregar a favoritos"}
+              <span className={`heart ${isFavorite(favId) ? "active" : ""}`}>
+                ❤︎
+              </span>
+              {isFavorite(favId) ? " En favoritos" : " Agregar a favoritos"}
             </button>
           </div>
         </div>
@@ -192,15 +209,15 @@ export default function GiveawayDetail() {
         ) : (
           <ul className="requirements">
             {instructionsList.map((line, i) => (
-              <li key={i}>
-                {line.startsWith("http") ? (
-                  <a href={line} target="_blank">
-                    {line}
-                  </a>
-                ) : (
-                  line
-                )}
-              </li>
+              <li
+                key={i}
+                dangerouslySetInnerHTML={{
+                  __html: line.replace(
+                    /<a /g,
+                    '<a target="_blank" rel="noopener noreferrer" '
+                  )
+                }}
+              />
             ))}
           </ul>
         )}
@@ -208,7 +225,7 @@ export default function GiveawayDetail() {
       </section>
 
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Giveaways similares</h2>
 
           <Link

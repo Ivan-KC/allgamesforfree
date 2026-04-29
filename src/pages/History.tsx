@@ -26,19 +26,38 @@ export default function History() {
     fetchGiveaways().then(setGiveaways);
   }, []);
 
-  const historyGames = history
-    .filter(h => h.type === "game")
-    .map(h => games.find(g => g.id === h.id))
-    .filter((g): g is Game => g !== undefined);
+  const historyItems = history
+    .map(h => {
+      if (h.type === "game") {
+        const game = games.find(g => g.id === h.id);
+        if (!game) return null;
 
-  const historyGiveaways = history
-    .filter(h => h.type === "giveaway")
-    .map(h => giveaways.find(g => g.id === h.id))
-    .filter((g): g is Giveaway => g !== undefined);
+        return {
+          type: "game",
+          data: game
+        };
+      }
+
+      if (h.type === "giveaway") {
+        const giveaway = giveaways.find(g => g.id === h.id);
+        if (!giveaway) return null;
+
+        return {
+          type: "giveaway",
+          data: giveaway
+        };
+      }
+
+      return null;
+    })
+    .filter(Boolean) as (
+      | { type: "game"; data: Game }
+      | { type: "giveaway"; data: Giveaway }
+    )[];
 
   return (
     <div className="container">
-      <div className="history-header">
+      <div className="history-heading">
         <h1>Historial</h1>
         {history.length !== 0 && (
           <button onClick={() => {
@@ -50,52 +69,41 @@ export default function History() {
         )}
       </div>
 
-      {history.length === 0 ? (
+      {historyItems.length === 0 ? (
         <div className="message">
           <h3>No hay historial todavía.</h3>
           <p>Hace click en juegos o giveaways para verlos acá.</p>
         </div>
       ) : (
-        <>
-          {/* Juegos */}
-          {historyGames.length > 0 && (
-            <section>
-              <h2>Juegos vistos</h2>
-              <div className="grid">
-                {historyGames.map(game => (
+        <section>
+          <div className="grid">
+            {historyItems.map((item, i) => {
+              if (item.type === "game") {
+                return (
                   <GameCard
-                    key={game.id}
-                    item={game}
-                    isFavorite={isFavorite(`game-${game.id}`)}
+                    key={`game-${item.data.id}-${i}`}
+                    item={item.data}
+                    isFavorite={isFavorite(`game-${item.data.id}`)}
                     onToggleFavorite={removeFavorite}
                   />
-                ))}
-              </div>
-            </section>
-          )}
+                );
+              }
 
-          {/* Giveaways */}
-          {historyGiveaways.length > 0 && (
-            <section>
-              <h2>Giveaways vistos</h2>
-              <div className="grid">
-                {historyGiveaways.map(g => {
-                  const Component = getGiveawayComponent(g);
+              const Component = getGiveawayComponent(item.data);
 
-                  return (
-                    <Component
-                      key={g.id}
-                      item={g}
-                      isFavorite={isFavorite(`giveaway-${g.id}`)}
-                      onToggleFavorite={removeFavorite}
-                    />
-                  );
-                })}
-              </div>
-            </section>
-          )}
-        </>
+              return (
+                <Component
+                  key={`giveaway-${item.data.id}-${i}`}
+                  item={item.data}
+                  isFavorite={isFavorite(`giveaway-${item.data.id}`)}
+                  onToggleFavorite={removeFavorite}
+                />
+              );
+            })}
+          </div>
+        </section>
       )}
+
     </div>
   );
 }

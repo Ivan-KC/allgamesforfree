@@ -130,7 +130,10 @@ export default function GameDetail() {
                 }
               }}
             >
-              {isFavorite(favId) ? "❤️ En favoritos" : "🤍 Agregar a favoritos"}
+              <span className={`heart ${isFavorite(favId) ? "active" : ""}`}>
+                ❤︎
+              </span>
+              {isFavorite(favId) ? " En favoritos" : " Agregar a favoritos"}
             </button>
           </div>
         </div>
@@ -217,7 +220,7 @@ export default function GameDetail() {
       )}
 
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Juegos similares</h2>
 
           <Link

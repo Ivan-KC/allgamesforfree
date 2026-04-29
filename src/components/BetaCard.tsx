@@ -35,6 +35,8 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
         </div>
 
         <div className="card-content">
+          <span className="card-badge">BETA</span>
+
           <div
             ref={textRef}
             className={isOverflowing ? "card-text fade" : "card-text"}
@@ -45,7 +47,15 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
 
           <div className="tags">
             <span className="tag">Beta</span>
-            <span className="tag">{item.platforms}</span>
+            {item.platforms
+              ?.split(",")
+              .map(p => p.trim())
+              .filter(Boolean)
+              .map((platform, i) => (
+                <span key={i} className="tag">
+                  {platform}
+                </span>
+              ))}
           </div>
 
           <button>Jugar ahora</button>
@@ -64,7 +74,9 @@ export default function BetaCard({ item, isFavorite, onToggleFavorite }: Props) 
           }
         }}
       >
-        {isFavorite ? "❤️" : "🤍"}
+        <span className={`heart ${isFavorite ? "active" : ""}`}>
+          ❤︎
+        </span>
       </button>
     </article>
   );

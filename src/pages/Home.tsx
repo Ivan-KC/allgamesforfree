@@ -33,19 +33,41 @@ function Home() {
     fetchGiveaways().then(setGiveaways);
   }, []);
 
-  const gamesList = games.slice(0, 5);
+
+  const getColumnCount = () => {
+    const w = window.innerWidth;
+    // Cuantos articulos por tamaño de pantalla
+    if (w <= 570) return 3;
+    if (w <= 850) return 4;
+    if (w <= 1120) return 3;
+    if (w <= 1400) return 4;
+    return 5;
+  };
+
+  const [columns, setColumns] = useState(getColumnCount());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(getColumnCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const gamesList = games.slice(0, columns);
 
   const giveawaysGames = giveaways
     .filter(g => g.type === "Game")
-    .slice(0, 5);
+    .slice(0, columns);
 
   const rewards = giveaways
     .filter(g => g.type === "DLC")
-    .slice(0, 5);
+    .slice(0, columns);
 
   const betas = giveaways
     .filter(g => g.type === "Early Access")
-    .slice(0, 5);
+    .slice(0, columns);
 
   const getId = (type: string, id: number) =>
     `${type}-${id}`;
@@ -53,9 +75,10 @@ function Home() {
   return (
     <div className="container">
 
-      <h1>🎮 Bienvenido! 🎮</h1>
+      <h1>Bienvenido! </h1>
+      <p>Descubrí juegos gratis, giveaways y más</p>
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Juegos Free to Play</h2>
           <Link to="/games" className="see-more">
             Ver más <span>→</span>
@@ -77,9 +100,9 @@ function Home() {
       </section>
 
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Juegos regalándose</h2>
-          <Link to="/giveaways" className="see-more">
+          <Link to="/giveaways?filter=game" className="see-more">
             Ver más <span>→</span>
           </Link>
         </div>
@@ -98,9 +121,9 @@ function Home() {
       </section>
 
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Recompensas gratis en juegos</h2>
-          <Link to="/rewards" className="see-more">
+          <Link to="/giveaways?filter=loot" className="see-more">
             Ver más <span>→</span>
           </Link>
         </div>
@@ -119,9 +142,9 @@ function Home() {
       </section>
 
       <section>
-        <div className="section-header">
+        <div className="section-heading">
           <h2>Betas abiertas</h2>
-          <Link to="/betas" className="see-more">
+          <Link to="/giveaways?filter=beta" className="see-more">
             Ver más <span>→</span>
           </Link>
         </div>

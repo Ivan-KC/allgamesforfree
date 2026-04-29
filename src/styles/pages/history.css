@@ -1,13 +1,13 @@
-.history-header {
+.history-heading {
     display: flex;
     align-items: center;
     margin: 20px 0;
 }
 
-.history-header h1 {
+.history-heading h1 {
     margin: 0;
 }
 
-.history-header button {
+.history-heading button {
     margin-left: 1rem;
 }

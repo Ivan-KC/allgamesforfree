@@ -9,15 +9,6 @@
 	transition: none;
 }
 
-/* Solo animamos articulos visibles */
-.card.in-view {
-	transition:
-		background 0.25s ease,
-		color 0.25s ease,
-		border-color 0.25s ease,
-		box-shadow 0.25s ease;
-}
-
 /* Cuando el mouse esta arriba */
 .card:hover {
 	box-shadow: var(--shadow);
@@ -55,25 +46,32 @@
 
 /* Botón favorito */
 .favorite-btn {
-	font: menu;
 	position: absolute;
 	top: 8px;
 	right: 8px;
 	color: var(--text);
 	background: var(--card-bg);
-	border: 1px solid var(--border);
 	border-radius: 50%;
-	width: 35px;
-	height: 35px;
+	width: 36px;
+	height: 36px;
 	padding: 0;
-	font-size: 20px;
+	font-size: 1.5rem;
 	cursor: pointer;
 	z-index: 2;
-	transition: none;
+	transition: transform 0.2s ease;
 }
 
-.card.in-view .favorite-btn {
-	transition: all 0.2s ease;
+/* Corazón base (no favorito) */
+.heart {
+	color: white;
+	-webkit-text-stroke: 1px var(--border);
+	transition: color 0.2s ease;
+}
+
+/* Cuando está en favoritos */
+.heart.active {
+	color: var(--secondary);
+	-webkit-text-stroke: 0;
 }
 
 /* Cuando el mouse esta arriba */
@@ -83,11 +81,26 @@
 
 /* Parte inferior del articulo */
 .card-content {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 	padding: 12px;
 	gap: 6px;
+}
+
+/* Insignia del articulo */
+.card-badge {
+	position: absolute;
+	top: -16px;
+	left: 12px;
+	padding: 0 6px;
+	color: white;
+	background: var(--accent);
+	border: 2px outset var(--accent-h);
+	font-family: 'Montserrat', system-ui, 'Segoe UI', Roboto, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 /* Texto del articulo */
@@ -107,8 +120,6 @@
 	width: 100%;
 	height: 2em;
 	pointer-events: none;
-
-	transition: opacity 0.25s ease;
 }
 
 .card-text.fade::after {
@@ -142,7 +153,8 @@
 .card-text h3 {
 	margin: 0;
 	margin-bottom: 6px;
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: normal;
 }
 
 /* Descripción del articulo */
@@ -172,8 +184,8 @@
 /* Precio original del articulo */
 .price {
 	display: flex;
-    flex-direction: row;
-    align-items: center;
+	flex-direction: row;
+	align-items: center;
 	margin-top: 6px;
 }
 
@@ -194,7 +206,7 @@
 }
 
 .price button {
-    width: stretch;
+	width: stretch;
 }
 
 .card-content button {

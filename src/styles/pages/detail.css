@@ -67,6 +67,8 @@
     box-shadow: var(--shadow);
     text-decoration: none;
     font-weight: bold;
+    text-align: center;
+    place-content: center;
     transition: 0.2s;
 }
 
@@ -76,10 +78,18 @@
     }
 
 .detail-actions button {
-    border: none;
-    box-shadow: var(--shadow);
-    border-radius: 10px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-actions .heart {
+    color: var(--secondary);
+    -webkit-text-stroke: 1px white;
+}
+
+.detail-actions .heart.active {
+    color: white;
 }
 
 /* Secciones */
@@ -202,6 +212,14 @@ section p {
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 10px;
+}
+
+.requirements a {
+    color: var(--accent);
+}
+
+.requirements a:hover {
+    color: var(--accent-h);
 }
 
 /* Texto de cargando */

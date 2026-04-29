@@ -1,14 +1,14 @@
-.collection-header {
+.collection-heading {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
 }
 
-.collection-header button {
+.collection-heading button {
     margin-left: 1rem;
 }
 
-.collection-header h2 {
+.collection-heading h2 {
     margin: 0;
 }
 

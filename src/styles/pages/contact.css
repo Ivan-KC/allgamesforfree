@@ -27,6 +27,10 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+.contact-info {
+    width: max-content;
+}
+
 .contact-info h2 {
     margin-bottom: 15px;
 }
@@ -69,7 +73,7 @@
 }
 
 /* Responsive */
-@media (max-width: 800px) {
+@media (max-width: 650px) {
     .contact-card {
         display: flex;
         flex-direction: column;

@@ -9,10 +9,13 @@ import Giveaways from "./pages/Giveaways";
 import GameDetail from "./pages/GameDetail";
 import GiveawayDetail from "./pages/GiveawayDetail";
 import History from "./pages/History";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
+      
       <Routes>
 
         <Route path="/" element={<Layout />}>

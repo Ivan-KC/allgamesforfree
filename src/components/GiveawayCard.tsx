@@ -35,6 +35,8 @@ export default function GiveawayCard({ item, isFavorite, onToggleFavorite }: Pro
         </div>
 
         <div className="card-content">
+          <span className="card-badge">GIVEAWAY</span>
+
           <div
             ref={textRef}
             className={isOverflowing ? "card-text fade" : "card-text"}
@@ -44,7 +46,15 @@ export default function GiveawayCard({ item, isFavorite, onToggleFavorite }: Pro
           </div>
 
           <div className="tags">
-            <span className="tag">{item.platforms}</span>
+            {item.platforms
+              ?.split(",")
+              .map(p => p.trim())
+              .filter(Boolean)
+              .map((platform, i) => (
+                <span key={i} className="tag">
+                  {platform}
+                </span>
+              ))}
           </div>
 
           <div className="price">
@@ -67,7 +77,9 @@ export default function GiveawayCard({ item, isFavorite, onToggleFavorite }: Pro
           }
         }}
       >
-        {isFavorite ? "❤️" : "🤍"}
+        <span className={`heart ${isFavorite ? "active" : ""}`}>
+          ❤︎
+        </span>
       </button>
     </article>
   );

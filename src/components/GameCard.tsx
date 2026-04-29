@@ -35,6 +35,8 @@ export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) 
         </div>
 
         <div className="card-content">
+          <span className="card-badge">JUEGO F2P</span>
+
           <div
             ref={textRef}
             className={isOverflowing ? "card-text fade" : "card-text"}
@@ -45,7 +47,15 @@ export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) 
 
           <div className="tags">
             <span className="tag">{item.genre}</span>
-            <span className="tag">{item.platform}</span>
+            {item.platform
+              ?.split(",")
+              .map(p => p.trim())
+              .filter(Boolean)
+              .map((platform, i) => (
+                <span key={i} className="tag">
+                  {platform}
+                </span>
+              ))}
           </div>
 
           <button>Jugar ahora</button>
@@ -65,7 +75,9 @@ export default function GameCard({ item, isFavorite, onToggleFavorite }: Props) 
           }
         }}
       >
-        {isFavorite ? "❤️" : "🤍"}
+        <span className={`heart ${isFavorite ? "active" : ""}`}>
+          ❤︎
+        </span>
       </button>
     </article >
   );

@@ -55,7 +55,7 @@ function Favorites() {
 
           return (
             <section key={name}>
-              <div className="collection-header">
+              <div className="collection-heading">
                 <h2>📁 {name}</h2>
 
                 <button
