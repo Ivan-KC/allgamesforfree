@@ -137,7 +137,7 @@ function ItemList<T>({
       case "Juegos":
         return "Juegos gratis";
       case "Giveaways":
-        return "Juegos regalándose";
+        return "Giveaways en vivo";
       default:
         return "Descubrí contenido disponible";
     }
@@ -148,7 +148,7 @@ function ItemList<T>({
       case "Juegos":
         return "Juegos gratuitos de tipo Free To Play de todos los géneros";
       case "Giveaways":
-        return "Recompensas y regalos por tiempo limitado";
+        return "Regalos, recompensas y accesos anticipados por tiempo limitado";
       default:
         return "Descubrí contenido disponible";
     }
