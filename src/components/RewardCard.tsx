@@ -48,7 +48,16 @@ export default function RewardCard({ item, isFavorite, onToggleFavorite }: Props
             <span className="tag">{item.platforms}</span>
           </div>
 
-          <button>Reclamar recompensa</button>
+          {item.worth === "N/A" ? (
+            <button>Reclamar recompensa</button>
+          ) : (
+            <div className="price">
+              <span>Gratis</span>
+              <p>{item.worth}</p>
+              <button>Reclamar</button>
+            </div>
+          )}
+
         </div>
       </Link>
       <button

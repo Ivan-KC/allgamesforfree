@@ -109,11 +109,53 @@ export function useFavorites() {
     };
   }, []);
 
+  const clearCollection = (collectionName: string) => {
+    let newData: FavoritesState;
+
+    setData(prev => {
+      const collections = { ...prev.collections };
+
+      if (collections[collectionName]) {
+        collections[collectionName] = [];
+      }
+
+      newData = { collections };
+      return newData;
+    });
+
+    setTimeout(() => {
+      localStorage.setItem("favorites", JSON.stringify(newData));
+      window.dispatchEvent(new Event("favoritesUpdated"));
+    }, 0);
+  };
+
+  const deleteCollection = (collectionName: string) => {
+    if (collectionName === DEFAULT_COLLECTION) return;
+
+    let newData: FavoritesState;
+
+    setData(prev => {
+      const collections = { ...prev.collections };
+
+      delete collections[collectionName];
+
+      newData = { collections };
+      return newData;
+    });
+
+    setTimeout(() => {
+      localStorage.setItem("favorites", JSON.stringify(newData));
+      window.dispatchEvent(new Event("favoritesUpdated"));
+    }, 0);
+  };
+
   return {
     collections: data.collections,
     addToCollection,
     removeFavorite,
     isFavorite,
-    toggleFavorite
+    toggleFavorite,
+    clearCollection,
+    deleteCollection
   };
 }

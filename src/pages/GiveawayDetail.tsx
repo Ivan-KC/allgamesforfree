@@ -9,7 +9,7 @@ import { fetchGiveaways } from "../services/fetchGiveaways";
 import { useFavorites } from "../utils/useFavorites";
 import { addToHistory } from "../utils/history";
 
-import GiveawayCard from "../components/GiveawayCard";
+import { getGiveawayComponent } from "../utils/getGiveawayComponent";
 
 export default function GiveawayDetail() {
   const { id } = useParams();
@@ -85,7 +85,7 @@ export default function GiveawayDetail() {
     }
   }, [selectedImage]);
 
-  if (!item) return <p>Cargando...</p>;
+  if (!item) return <div className="loading"><p className="message">Cargando...</p></div>;
 
   const favId = `giveaway-${item.id}`;
 
@@ -141,10 +141,12 @@ export default function GiveawayDetail() {
 
         <div className="details-grid">
 
-          <div className="detail-item">
-            <span className="label">Valor</span>
-            <span className="value">{item.worth}</span>
-          </div>
+          {item.worth !== "N/A" && (
+            <div className="detail-item">
+              <span className="label">Valor</span>
+              <span className="value">{item.worth}</span>
+            </div>
+          )}
 
           <div className="detail-item">
             <span className="label">Tipo</span>
@@ -218,17 +220,21 @@ export default function GiveawayDetail() {
         </div>
 
         {relatedGiveaways.length === 0 ? (
-          <p>No hay giveaways similares 😢</p>
+          <p className="message">No hay giveaways similares.</p>
         ) : (
           <div className="grid">
-            {relatedGiveaways.map(g => (
-              <GiveawayCard
-                key={g.id}
-                item={g}
-                isFavorite={isFavorite(`giveaway-${g.id}`)}
-                onToggleFavorite={removeFavorite}
-              />
-            ))}
+            {relatedGiveaways.map(g => {
+              const Component = getGiveawayComponent(g);
+
+              return (
+                <Component
+                  key={g.id}
+                  item={g}
+                  isFavorite={isFavorite(`giveaway-${g.id}`)}
+                  onToggleFavorite={removeFavorite}
+                />
+              );
+            })}
           </div>
         )}
       </section>

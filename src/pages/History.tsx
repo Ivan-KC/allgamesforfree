@@ -7,9 +7,11 @@ import { fetchGames } from "../services/fetchGames";
 import { fetchGiveaways } from "../services/fetchGiveaways";
 import type { HistoryItem } from "../utils/history";
 import { useFavorites } from "../utils/useFavorites";
+import { getGiveawayComponent } from "../utils/getGiveawayComponent";
 
 import GameCard from "../components/GameCard";
-import GiveawayCard from "../components/GiveawayCard";
+
+import "../styles/pages/history.css"
 
 export default function History() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -36,48 +38,62 @@ export default function History() {
 
   return (
     <div className="container">
-      <h1>Historial</h1>
-
-      {history.length === 0 ? (
-        <p>No hay historial todavía 😢</p>
-      ) : (
-        <>
+      <div className="history-header">
+        <h1>Historial</h1>
+        {history.length !== 0 && (
           <button onClick={() => {
             clearHistory();
             setHistory([]);
           }}>
             Limpiar historial
           </button>
+        )}
+      </div>
 
+      {history.length === 0 ? (
+        <div className="message">
+          <h3>No hay historial todavía.</h3>
+          <p>Hace click en juegos o giveaways para verlos acá.</p>
+        </div>
+      ) : (
+        <>
           {/* Juegos */}
-          <section>
-            <h2>Juegos vistos</h2>
-            <div className="grid">
-              {historyGames.map(game => (
-                <GameCard
-                  key={game.id}
-                  item={game}
-                  isFavorite={isFavorite(`game-${game.id}`)}
-                  onToggleFavorite={removeFavorite}
-                />
-              ))}
-            </div>
-          </section>
+          {historyGames.length > 0 && (
+            <section>
+              <h2>Juegos vistos</h2>
+              <div className="grid">
+                {historyGames.map(game => (
+                  <GameCard
+                    key={game.id}
+                    item={game}
+                    isFavorite={isFavorite(`game-${game.id}`)}
+                    onToggleFavorite={removeFavorite}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Giveaways */}
-          <section>
-            <h2>Giveaways vistos</h2>
-            <div className="grid">
-              {historyGiveaways.map(g => (
-                <GiveawayCard
-                  key={g.id}
-                  item={g}
-                  isFavorite={isFavorite(`giveaway-${g.id}`)}
-                  onToggleFavorite={removeFavorite}
-                />
-              ))}
-            </div>
-          </section>
+          {historyGiveaways.length > 0 && (
+            <section>
+              <h2>Giveaways vistos</h2>
+              <div className="grid">
+                {historyGiveaways.map(g => {
+                  const Component = getGiveawayComponent(g);
+
+                  return (
+                    <Component
+                      key={g.id}
+                      item={g}
+                      isFavorite={isFavorite(`giveaway-${g.id}`)}
+                      onToggleFavorite={removeFavorite}
+                    />
+                  );
+                })}
+              </div>
+            </section>
+          )}
         </>
       )}
     </div>

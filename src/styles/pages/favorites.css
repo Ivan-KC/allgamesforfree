@@ -1,6 +1,22 @@
-.empty-message {
-    text-align: center;
-    padding: 30px;
-    opacity: 0.7;
-    font-size: 16px;
+.collection-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.collection-header button {
+    margin-left: 1rem;
+}
+
+.collection-header h2 {
+    margin: 0;
+}
+
+.delete-btn {
+    background: #ff5252;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    background: #ff9494;
 }

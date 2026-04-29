@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { useFavorites } from "../utils/useFavorites";
+import { getGiveawayComponent } from "../utils/getGiveawayComponent";
 
 import GameCard from "./GameCard";
 import GiveawayCard from "./GiveawayCard";
-import RewardCard from "./RewardCard";
-import BetaCard from "./BetaCard";
 
 import "../styles/components/search.css";
 
@@ -118,31 +118,19 @@ function ItemList<T>({
   }, [processedItems]);
 
   const getCardComponent = (item: any) => {
-  switch (item.source) {
-    case "game":
-      return GameCard;
-
-    case "giveaway":
-    {
-      switch (item.type?.toLowerCase()) {
+    switch (item.source) {
       case "game":
-        return GiveawayCard;
+        return GameCard;
 
-      case "dlc":
-        return RewardCard;
-
-      case "early access":
-        return BetaCard;
+      case "giveaway":
+        {
+          return getGiveawayComponent(item);
+        }
 
       default:
         return GiveawayCard;
     }
-    }
-
-    default:
-      return GiveawayCard;
-  }
-};
+  };
 
   return (
     <div>
@@ -240,7 +228,7 @@ function ItemList<T>({
 
         {/* Grid de resultados */}
         {finalItems.length === 0 ? (
-          <div className="no-results">
+          <div className="message">
             <h3>No se encontraron resultados</h3>
 
             <p>

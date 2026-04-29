@@ -58,11 +58,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} FreeGames — Todos los derechos reservados
-
-        ©
-
-        ©
+        © {new Date().getFullYear()} AllGamesForFree — Todos los derechos reservados
       </div>
     </footer>
   );

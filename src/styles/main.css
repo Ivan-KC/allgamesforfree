@@ -96,6 +96,19 @@ code {
     color: var(--text-h);
 }
 
+/* Mensaje */
+.message {
+    width: fit-content;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.message h3 {
+    margin-top: 0;
+}
+
 @media (max-width: 1024px) {
     button {
         font-size: 16px;

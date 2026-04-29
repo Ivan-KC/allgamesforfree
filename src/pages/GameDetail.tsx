@@ -101,7 +101,7 @@ export default function GameDetail() {
   }, [selectedImage]);
 
 
-  if (!game) return <div className="loading">Cargando...</div>;
+  if (!game) return <div className="loading"><p className="message">Cargando...</p></div>;
 
   const favId = `game-${game.id}`;
 
