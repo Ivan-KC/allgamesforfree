@@ -1,7 +1,8 @@
 .history-heading {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 0;
+    margin-bottom: 1rem
 }
 
 .history-heading h1 {

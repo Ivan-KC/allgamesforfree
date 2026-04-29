@@ -51,6 +51,28 @@ export default function GameDetail() {
       .catch(console.error);
   }, [id]);
 
+  const getColumnCount = () => {
+    const w = window.innerWidth;
+    if (w <= 570) return 3;
+    if (w <= 870) return 4;
+    if (w <= 1150) return 3;
+    if (w <= 1430) return 4;
+    return 5;
+  };
+
+  const [columns, setColumns] = useState(getColumnCount());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(getColumnCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [allRelated, setAllRelated] = useState<Game[]>([]);
+
   useEffect(() => {
     if (!game) return;
 
@@ -60,14 +82,17 @@ export default function GameDetail() {
       .then(data => {
         const filtered = data
           .filter((g: Game) => g.id !== game.id)
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 5);
+          .sort(() => 0.5 - Math.random());
 
-        setRelatedGames(filtered);
+        setAllRelated(filtered);
       })
       .catch(console.error);
 
   }, [game]);
+
+  useEffect(() => {
+    setRelatedGames(allRelated.slice(0, columns));
+  }, [allRelated, columns]);
 
   useEffect(() => {
     if (!game) return;

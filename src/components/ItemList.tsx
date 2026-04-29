@@ -132,11 +132,35 @@ function ItemList<T>({
     }
   };
 
+  function getTitle(title: string) {
+    switch (title) {
+      case "Juegos":
+        return "Juegos gratis";
+      case "Giveaways":
+        return "Juegos regalándose";
+      default:
+        return "Descubrí contenido disponible";
+    }
+  }
+
+  function getSubtitle(title: string) {
+    switch (title) {
+      case "Juegos":
+        return "Juegos gratuitos de tipo Free To Play de todos los géneros";
+      case "Giveaways":
+        return "Recompensas y regalos por tiempo limitado";
+      default:
+        return "Descubrí contenido disponible";
+    }
+  }
+
   return (
     <div>
       <div className="container">
-
-        <h1>{title}</h1>
+        <div className="heading">
+          <h1>{getTitle(title)}</h1>
+          <p>{getSubtitle(title)}</p>
+        </div>
 
         <div className="games-toolbar">
 

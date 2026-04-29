@@ -37,6 +37,28 @@ export default function GiveawayDetail() {
       .catch(console.error);
   }, [id]);
 
+  const getColumnCount = () => {
+    const w = window.innerWidth;
+    if (w <= 570) return 3;
+    if (w <= 870) return 4;
+    if (w <= 1150) return 3;
+    if (w <= 1430) return 4;
+    return 5;
+  };
+
+  const [columns, setColumns] = useState(getColumnCount());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setColumns(getColumnCount());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [allRelated, setAllRelated] = useState<any[]>([]);
+
   useEffect(() => {
     if (!item) return;
 
@@ -46,14 +68,17 @@ export default function GiveawayDetail() {
           .filter((g: Giveaway) =>
             g.id !== item.id && g.type === item.type
           )
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 5);
+          .sort(() => 0.5 - Math.random());
 
-        setRelatedGiveaways(filtered);
+        setAllRelated(filtered);
       })
       .catch(console.error);
 
   }, [item]);
+
+  useEffect(() => {
+    setRelatedGiveaways(allRelated.slice(0, columns));
+  }, [allRelated, columns]);
 
   useEffect(() => {
     if (!item) return;

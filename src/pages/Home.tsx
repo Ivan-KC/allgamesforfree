@@ -15,6 +15,7 @@ import BetaCard from "../components/BetaCard";
 
 import "../styles/fonts.css";
 import "../styles/theme.css";
+import "../styles/components/heading.css";
 import "../styles/components/section.css";
 import "../styles/components/grid.css";
 import "../styles/components/card.css";
@@ -74,12 +75,13 @@ function Home() {
 
   return (
     <div className="container">
-
-      <h1>Bienvenido! </h1>
-      <p>Descubrí juegos gratis, giveaways y más</p>
+      <div className="heading">
+        <h1>Bienvenido!</h1>
+        <p>Descubrí juegos gratis, recompensas y más</p>
+      </div>
       <section>
         <div className="section-heading">
-          <h2>Juegos Free to Play</h2>
+          <h2>Juegos gratis</h2>
           <Link to="/games" className="see-more">
             Ver más <span>→</span>
           </Link>

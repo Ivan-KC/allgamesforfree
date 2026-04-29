@@ -1,19 +1,18 @@
 .contact-container {
     max-width: 900px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 1rem;
 }
 
 .contact-title {
     text-align: center;
-    font-size: 2.5rem;
+    margin: 0;
     margin-bottom: 10px;
 }
 
 .contact-subtitle {
     text-align: center;
-    margin-bottom: 40px;
-    opacity: 0.8;
+    margin-bottom: 2rem;
 }
 
 .contact-card {

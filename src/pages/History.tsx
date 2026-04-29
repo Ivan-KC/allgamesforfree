@@ -75,33 +75,31 @@ export default function History() {
           <p>Hace click en juegos o giveaways para verlos acá.</p>
         </div>
       ) : (
-        <section>
-          <div className="grid">
-            {historyItems.map((item, i) => {
-              if (item.type === "game") {
-                return (
-                  <GameCard
-                    key={`game-${item.data.id}-${i}`}
-                    item={item.data}
-                    isFavorite={isFavorite(`game-${item.data.id}`)}
-                    onToggleFavorite={removeFavorite}
-                  />
-                );
-              }
-
-              const Component = getGiveawayComponent(item.data);
-
+        <div className="grid">
+          {historyItems.map((item, i) => {
+            if (item.type === "game") {
               return (
-                <Component
-                  key={`giveaway-${item.data.id}-${i}`}
+                <GameCard
+                  key={`game-${item.data.id}-${i}`}
                   item={item.data}
-                  isFavorite={isFavorite(`giveaway-${item.data.id}`)}
+                  isFavorite={isFavorite(`game-${item.data.id}`)}
                   onToggleFavorite={removeFavorite}
                 />
               );
-            })}
-          </div>
-        </section>
+            }
+
+            const Component = getGiveawayComponent(item.data);
+
+            return (
+              <Component
+                key={`giveaway-${item.data.id}-${i}`}
+                item={item.data}
+                isFavorite={isFavorite(`giveaway-${item.data.id}`)}
+                onToggleFavorite={removeFavorite}
+              />
+            );
+          })}
+        </div>
       )}
 
     </div>

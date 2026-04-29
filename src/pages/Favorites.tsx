@@ -28,7 +28,9 @@ function Favorites() {
 
   return (
     <div className="container">
-      <h1>Tus Favoritos</h1>
+      <div className="heading">
+        <h1>Tus Favoritos</h1>
+      </div>
 
       {!hasFavorites ? (
         <div className="message">

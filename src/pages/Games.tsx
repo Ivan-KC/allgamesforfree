@@ -8,7 +8,7 @@ function Games() {
 
   return (
     <ItemList
-      title="Juegos Free To Play"
+      title="Juegos"
       fetchFunction={fetchGames}
       CardComponent={GameCard}
       categories={[
