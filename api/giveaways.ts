@@ -1,9 +1,9 @@
 export default async function handler(req: any, res: any) {
-  const { category, platform, "sort-by": sortBy } = req.query;
+  const { type, platform, "sort-by": sortBy } = req.query;
 
   const params = new URLSearchParams();
 
-  if (category) params.append("type", category);
+  if (type) params.append("type", type);
   if (platform) params.append("platform", platform);
   if (sortBy) params.append("sort-by", sortBy);
 
