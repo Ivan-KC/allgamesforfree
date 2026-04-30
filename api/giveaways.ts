@@ -3,7 +3,7 @@ export default async function handler(req: any, res: any) {
 
   const params = new URLSearchParams();
 
-  if (category) params.append("category", category);
+  if (category) params.append("type", category);
   if (platform) params.append("platform", platform);
   if (sortBy) params.append("sort-by", sortBy);
 
